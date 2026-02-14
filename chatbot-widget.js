@@ -306,12 +306,12 @@
       position: absolute;
       bottom: 80px;
       right: 0;
-      width: 400px;
+      width: 450px;
       max-width: calc(100vw - 40px);
-      height: 600px;
+      height: 680px;
       max-height: calc(100vh - 120px);
       background: #0d1117;
-      border-radius: 16px;
+      border-radius: 20px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 1px rgba(201, 168, 76, 0.3);
       display: flex;
       flex-direction: column;
@@ -331,7 +331,7 @@
 
     .geobrif-chat-header {
       background: linear-gradient(135deg, #111520 0%, #0d1117 100%);
-      padding: 20px;
+      padding: 24px;
       border-bottom: 1px solid rgba(201, 168, 76, 0.15);
       display: flex;
       align-items: center;
@@ -356,29 +356,29 @@
     }
 
     .geobrif-chat-avatar {
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: linear-gradient(135deg, #c9a84c 0%, #e8c876 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 22px;
       flex-shrink: 0;
       box-shadow: 0 4px 12px rgba(201, 168, 76, 0.3);
     }
 
     .geobrif-chat-info h3 {
       color: #f4f2ed;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
       font-family: 'Cormorant Garamond', serif;
     }
 
     .geobrif-chat-status {
       color: #8b8ea8;
-      font-size: 12px;
+      font-size: 13px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -413,10 +413,10 @@
     .geobrif-chat-body {
       flex: 1;
       overflow-y: auto;
-      padding: 20px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
       background: #0a0b0f;
       scrollbar-width: thin;
       scrollbar-color: rgba(201, 168, 76, 0.3) transparent;
@@ -461,14 +461,14 @@
     }
 
     .geobrif-message-avatar {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .geobrif-message.bot .geobrif-message-avatar {
@@ -485,10 +485,10 @@
     }
 
     .geobrif-message-bubble {
-      padding: 12px 16px;
-      border-radius: 12px;
-      font-size: 14px;
-      line-height: 1.6;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-size: 15px;
+      line-height: 1.7;
       color: #f4f2ed;
       white-space: pre-wrap;
       word-wrap: break-word;
@@ -550,20 +550,21 @@
     .geobrif-quick-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
+      gap: 10px;
+      margin-top: 12px;
     }
 
     .geobrif-quick-action {
       background: transparent;
       border: 1px solid rgba(201, 168, 76, 0.3);
       color: #c9a84c;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 13px;
+      padding: 10px 16px;
+      border-radius: 24px;
+      font-size: 14px;
       cursor: pointer;
       transition: all 0.2s ease;
       white-space: nowrap;
+      font-weight: 500;
     }
 
     .geobrif-quick-action:hover {
@@ -574,23 +575,23 @@
 
     .geobrif-categories {
       display: grid;
-      gap: 8px;
-      margin-top: 12px;
+      gap: 10px;
+      margin-top: 14px;
     }
 
     .geobrif-category-btn {
       background: #111520;
       border: 1px solid rgba(201, 168, 76, 0.15);
       color: #f4f2ed;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: 13px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      font-size: 14px;
       cursor: pointer;
       transition: all 0.3s ease;
       text-align: left;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .geobrif-category-btn:hover {
@@ -600,7 +601,7 @@
     }
 
     .geobrif-category-icon {
-      font-size: 18px;
+      font-size: 22px;
     }
 
     .geobrif-category-info {
@@ -609,28 +610,29 @@
 
     .geobrif-category-title {
       font-weight: 600;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+      font-size: 15px;
     }
 
     .geobrif-category-count {
-      font-size: 11px;
+      font-size: 12px;
       color: #8b8ea8;
     }
 
     .geobrif-chat-input-wrapper {
-      padding: 16px;
+      padding: 20px;
       background: #0d1117;
       border-top: 1px solid rgba(201, 168, 76, 0.15);
     }
 
     .geobrif-chat-input-container {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       align-items: center;
       background: #111520;
       border: 1px solid rgba(201, 168, 76, 0.2);
-      border-radius: 12px;
-      padding: 4px 4px 4px 16px;
+      border-radius: 14px;
+      padding: 6px 6px 6px 18px;
       transition: all 0.2s ease;
     }
 
@@ -644,8 +646,8 @@
       background: transparent;
       border: none;
       color: #f4f2ed;
-      font-size: 14px;
-      padding: 10px 0;
+      font-size: 15px;
+      padding: 12px 0;
       outline: none;
       font-family: inherit;
     }
@@ -658,9 +660,9 @@
       background: linear-gradient(135deg, #c9a84c 0%, #e8c876 100%);
       border: none;
       color: #0a0b0f;
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -681,8 +683,8 @@
     }
 
     .geobrif-chat-send svg {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       fill: currentColor;
     }
 
@@ -690,17 +692,18 @@
       background: transparent;
       border: 1px solid rgba(201, 168, 76, 0.2);
       color: #8b8ea8;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
       cursor: pointer;
       transition: all 0.2s ease;
-      margin-top: 8px;
+      margin-top: 10px;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
+      font-weight: 500;
     }
 
     .geobrif-clear-chat:hover {
