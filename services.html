@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Services — GeoBrif Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --obsidian: #0a0b0f;
+      --deep-navy: #0d1117;
+      --card-bg: #111520;
+      --card-border: #1e2538;
+      --gold: #c9a84c;
+      --gold-light: #e8c876;
+      --white: #f4f2ed;
+      --muted: #8b8ea8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--obsidian);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* ══ NAV ══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 5vw;
+      background: rgba(10,11,15,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+      transition: box-shadow 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600;
+      letter-spacing: 0.05em; color: var(--white);
+      text-decoration: none; z-index: 201;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta {
+      border: 1px solid var(--gold); color: var(--gold);
+      padding: 0.5rem 1.3rem; font-size: 0.76rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.25s, color 0.25s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--obsidian); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; z-index: 201; background: none;
+      border: none; padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--gold); transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,11,15,0.98);
+      backdrop-filter: blur(20px); z-index: 199;
+      flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white); text-decoration: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 300;
+      letter-spacing: 0.06em; transition: color 0.25s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .mob-cta {
+      border: 1px solid var(--gold); color: var(--gold) !important;
+      padding: 0.75rem 2.5rem;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 0.82rem !important; letter-spacing: 0.12em !important;
+      text-transform: uppercase; margin-top: 0.5rem;
+    }
+
+    /* ══ BUTTONS ══ */
+    .btn-primary {
+      background: var(--gold); color: var(--obsidian); border: none;
+      padding: 0.9rem 2.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+      display: inline-block; text-align: center;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      border: 1px solid rgba(244,242,237,0.2);
+      padding: 0.9rem 2.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.25s, color 0.25s;
+      display: inline-block; text-align: center;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-gold-ghost {
+      background: transparent; color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.35);
+      padding: 0.75rem 1.8rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+      display: inline-block;
+    }
+    .btn-gold-ghost:hover { background: var(--gold); color: var(--obsidian); }
+
+    /* ══ SHARED ══ */
+    .section-tag {
+      font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.9rem; display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+      font-weight: 300; line-height: 1.15; margin-bottom: 1.3rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-body { color: var(--muted); line-height: 1.85; font-size: 0.93rem; max-width: 560px; }
+
+    /* ══ PAGE HERO ══ */
+    .page-hero {
+      min-height: 52vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 10rem 5vw 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-geo { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .hero-geo::before {
+      content: ''; position: absolute;
+      top: -20%; right: -10%;
+      width: 65vw; height: 65vw;
+      max-width: 600px; max-height: 600px;
+      border: 1px solid rgba(201,168,76,0.05); border-radius: 50%;
+    }
+    .hero-geo::after {
+      content: ''; position: absolute;
+      top: 5%; right: 8%;
+      width: 42vw; height: 42vw;
+      max-width: 400px; max-height: 400px;
+      border: 1px solid rgba(201,168,76,0.08); border-radius: 50%;
+    }
+    .hero-glow {
+      position: absolute; top: 0; right: 0;
+      width: 55vw; height: 100%;
+      background: radial-gradient(ellipse at top right, rgba(42,58,110,0.28) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.7s ease both;
+    }
+    .breadcrumb a {
+      font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.25s;
+    }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: rgba(201,168,76,0.4); font-size: 0.65rem; }
+    .breadcrumb .current {
+      color: var(--gold); font-size: 0.72rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.01em;
+      animation: fadeUp 0.85s 0.1s ease both;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-rule {
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, rgba(201,168,76,0.35), transparent);
+      margin-top: 3rem;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    /* ══ SERVICE NAV TABS ══ */
+    .service-tabs-wrap {
+      background: var(--deep-navy);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky; top: 62px; z-index: 100;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .service-tabs-wrap::-webkit-scrollbar { display: none; }
+    .service-tabs {
+      display: flex; min-width: max-content;
+      padding: 0 5vw;
+    }
+    .tab-link {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 1.1rem 1.6rem;
+      font-size: 0.75rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .tab-link:hover { color: var(--white); }
+    .tab-link.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .tab-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem; color: rgba(201,168,76,0.4);
+    }
+
+    /* ══ SERVICE BLOCKS ══ */
+    .service-block {
+      padding: 6rem 5vw;
+      border-bottom: 1px solid var(--card-border);
+      scroll-margin-top: 110px;
+    }
+    .service-block:nth-child(even) { background: var(--deep-navy); }
+
+    .service-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 6rem; align-items: start;
+      max-width: 1200px;
+    }
+    .service-block:nth-child(even) .service-inner {
+      grid-template-columns: 1.15fr 1fr;
+    }
+    .service-block:nth-child(even) .service-left  { order: 2; }
+    .service-block:nth-child(even) .service-right { order: 1; }
+
+    /* Left — meta */
+    .service-left {}
+    .service-index {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .service-index-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem; font-weight: 300;
+      color: rgba(201,168,76,0.12); line-height: 1;
+    }
+    .service-index-icon {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1.2rem;
+    }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 300; line-height: 1.15; margin-bottom: 1.2rem;
+    }
+    .service-name em { font-style: italic; color: var(--gold); }
+
+    .service-desc {
+      font-size: 0.92rem; color: var(--muted);
+      line-height: 1.85; margin-bottom: 2rem;
+    }
+    .service-desc strong { color: var(--white); font-weight: 500; }
+
+    .service-cta { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+    /* Right — features + process */
+    .service-right {}
+
+    .features-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 2.2rem; position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .features-box::before {
+      content: ''; position: absolute;
+      top: -1px; left: -1px; width: 42px; height: 42px;
+      border-top: 2px solid var(--gold); border-left: 2px solid var(--gold);
+    }
+    .features-label {
+      font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.4rem; display: block;
+    }
+    .features-list { list-style: none; display: grid; gap: 0.8rem; }
+    .features-list li {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      font-size: 0.85rem; color: var(--muted); line-height: 1.6;
+    }
+    .features-list li::before {
+      content: '◆';
+      color: var(--gold); font-size: 0.45rem;
+      flex-shrink: 0; margin-top: 0.45rem;
+    }
+
+    .process-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 2.2rem;
+    }
+    .process-label {
+      font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.4rem; display: block;
+    }
+    .process-steps { display: grid; gap: 0; }
+    .process-step {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(30,37,56,0.8);
+    }
+    .process-step:last-child { border-bottom: none; padding-bottom: 0; }
+    .process-step:first-child { padding-top: 0; }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600;
+      color: rgba(201,168,76,0.35); line-height: 1;
+      flex-shrink: 0; width: 28px;
+    }
+    .step-content {}
+    .step-title {
+      font-size: 0.85rem; font-weight: 600;
+      margin-bottom: 0.2rem; color: var(--white);
+    }
+    .step-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+
+    /* ══ SERVICES OVERVIEW STRIP ══ */
+    .overview-strip {
+      background: var(--deep-navy);
+      border-top: 1px solid var(--card-border);
+      padding: 5rem 5vw;
+    }
+    .overview-header { text-align: center; margin-bottom: 3.5rem; }
+    .overview-header .section-body { margin: 0 auto; text-align: center; }
+    .overview-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 1px; background: var(--card-border);
+      border: 1px solid var(--card-border);
+      max-width: 1100px; margin: 0 auto;
+    }
+    .overview-card {
+      background: var(--card-bg); padding: 1.8rem 1.5rem;
+      text-align: center; cursor: pointer;
+      transition: background 0.25s; text-decoration: none;
+      display: block; position: relative; overflow: hidden;
+    }
+    .overview-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; width: 0; height: 2px;
+      background: var(--gold); transition: width 0.4s;
+    }
+    .overview-card:hover { background: #141827; }
+    .overview-card:hover::after { width: 100%; }
+    .overview-icon {
+      font-size: 1.3rem; color: var(--gold);
+      margin-bottom: 0.8rem; display: block;
+    }
+    .overview-name {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.04em; margin-bottom: 0.3rem;
+    }
+    .overview-arrow {
+      font-size: 0.72rem; color: var(--gold);
+      opacity: 0; transition: opacity 0.25s;
+    }
+    .overview-card:hover .overview-arrow { opacity: 1; }
+
+    /* ══ CTA STRIP ══ */
+    #cta-strip {
+      padding: 6rem 5vw;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #cta-strip::before {
+      content: ''; position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: min(600px, 90vw); height: min(600px, 90vw);
+      background: radial-gradient(circle, rgba(42,58,110,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #cta-strip .section-title { margin: 0 auto 1rem; }
+    #cta-strip .section-body { margin: 0 auto 2.5rem; text-align: center; }
+    .cta-line { width: 50px; height: 1px; background: var(--gold); margin: 0 auto 2rem; }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ══ FOOTER ══ */
+    footer {
+      padding: 2rem 5vw;
+      border-top: 1px solid rgba(201,168,76,0.08);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; }
+    .footer-logo span { color: var(--gold); }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.07em; }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 0.72rem; color: var(--muted); text-decoration: none;
+      letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--obsidian); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+    /* ══ TABLET ≤ 900px ══ */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .service-inner,
+      .service-block:nth-child(even) .service-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .service-block:nth-child(even) .service-left  { order: 1; }
+      .service-block:nth-child(even) .service-right { order: 2; }
+
+      .overview-grid { grid-template-columns: repeat(3, 1fr); }
+
+      footer { flex-direction: column; align-items: center; text-align: center; gap: 1.2rem; }
+      .footer-links { justify-content: center; }
+    }
+
+    /* ══ MOBILE ≤ 600px ══ */
+    @media (max-width: 600px) {
+      .page-hero { padding: 8rem 5vw 3rem; min-height: auto; }
+      .page-hero h1 { font-size: clamp(2.5rem, 11vw, 3.5rem); }
+      .service-block { padding: 4rem 5vw; }
+      .service-tabs-wrap { top: 56px; }
+      .tab-link { padding: 1rem 1.1rem; font-size: 0.68rem; }
+      .features-box, .process-box { padding: 1.6rem; }
+      .overview-grid { grid-template-columns: repeat(2, 1fr); }
+      .overview-grid .overview-card:last-child { grid-column: span 2; }
+      .cta-actions { flex-direction: column; align-items: center; gap: 0.75rem; }
+      .cta-actions .btn-primary,
+      .cta-actions .btn-ghost { width: 100%; max-width: 320px; }
+      .service-cta { flex-direction: column; gap: 0.75rem; }
+      .service-cta .btn-primary,
+      .service-cta .btn-gold-ghost { width: 100%; text-align: center; }
+      footer { padding: 1.8rem 5vw; }
+    }
+
+    @media (max-width: 380px) {
+      .page-hero h1 { font-size: 2.1rem; }
+      .nav-logo { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo">Geo<span>Brif</span> Digital</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="why-us.html">Why Us</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="index.html#cta" class="nav-cta">Get Started</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html" onclick="closeMenu()">About</a>
+    <a href="services.html" onclick="closeMenu()">Services</a>
+    <a href="why-us.html" onclick="closeMenu()">Why Us</a>
+    <a href="faq.html" onclick="closeMenu()">FAQ</a>
+    <a href="contact.html" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <div class="hero-geo"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span class="current">Services</span>
+      </div>
+      <h1>What We<br/>Do <em>Best.</em></h1>
+      <div class="hero-rule"></div>
+    </div>
+  </header>
+
+  <!-- STICKY SERVICE TABS -->
+  <div class="service-tabs-wrap">
+    <div class="service-tabs">
+      <a href="#web-dev"     class="tab-link active"><span class="tab-num">01</span> Web Development</a>
+      <a href="#ai-chatbot"  class="tab-link"><span class="tab-num">02</span> AI Chatbots</a>
+      <a href="#automation"  class="tab-link"><span class="tab-num">03</span> Automation</a>
+      <a href="#email"       class="tab-link"><span class="tab-num">04</span> Business Email</a>
+      <a href="#branding"    class="tab-link"><span class="tab-num">05</span> Branding</a>
+    </div>
+  </div>
+
+  <!-- ── SERVICE 01: WEB DEVELOPMENT ── -->
+  <div class="service-block" id="web-dev">
+    <div class="service-inner reveal">
+      <div class="service-left">
+        <div class="service-index">
+          <div class="service-index-num">01</div>
+          <div class="service-index-icon">⬛</div>
+        </div>
+        <div class="service-name">Custom Website<br/><em>Development</em></div>
+        <p class="service-desc">
+          Your website is your most powerful sales tool — or your biggest liability. At GeoBrif Digital, we build <strong>high-performance, custom-coded websites</strong> from the ground up. No page builders. No templates. No compromises.
+          <br/><br/>
+          Every site we build is engineered for speed, designed for conversion, and architected to grow alongside your business. We obsess over the details so your visitors never have a reason to leave.
+        </p>
+        <div class="service-cta">
+          <a href="mailto:hello@geobrif.com?subject=Website Development Enquiry" class="btn-primary">Enquire Now</a>
+          <a href="about.html" class="btn-gold-ghost">Learn About Us</a>
+        </div>
+      </div>
+      <div class="service-right">
+        <div class="features-box">
+          <span class="features-label">What's Included</span>
+          <ul class="features-list">
+            <li>Fully custom design — zero templates, every element built for your brand</li>
+            <li>Mobile-first, responsive across all screen sizes and devices</li>
+            <li>Performance-optimised for sub-2s load times</li>
+            <li>SEO foundations baked in from the ground up</li>
+            <li>Content Management System (CMS) integration if required</li>
+            <li>Contact forms, lead capture, and conversion elements</li>
+            <li>SSL, hosting guidance, and launch support included</li>
+          </ul>
+        </div>
+        <div class="process-box">
+          <span class="process-label">How It Works</span>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <div class="step-title">Discovery Call</div>
+                <div class="step-desc">We learn your goals, audience, and vision in a focused scoping session.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <div class="step-title">Design & Wireframes</div>
+                <div class="step-desc">We present layout concepts and visual direction for your approval.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <div class="step-title">Build & Refine</div>
+                <div class="step-desc">Development begins with regular check-ins and revision rounds.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <div class="step-title">Launch & Handover</div>
+                <div class="step-desc">We go live, ensure everything runs perfectly, and hand you the keys.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVICE 02: AI CHATBOT ── -->
+  <div class="service-block" id="ai-chatbot">
+    <div class="service-inner reveal">
+      <div class="service-left">
+        <div class="service-index">
+          <div class="service-index-num">02</div>
+          <div class="service-index-icon">◈</div>
+        </div>
+        <div class="service-name">AI Chatbot<br/><em>Solutions</em></div>
+        <p class="service-desc">
+          Imagine having a knowledgeable, always-available team member who <strong>never sleeps, never misses a lead, and never has an off day.</strong> That's what a GeoBrif AI chatbot delivers.
+          <br/><br/>
+          We design and deploy intelligent conversational agents trained on your business — your products, services, tone, and processes. They qualify leads, answer questions, handle bookings, and guide customers through your funnel, 24 hours a day, 7 days a week.
+        </p>
+        <div class="service-cta">
+          <a href="mailto:hello@geobrif.com?subject=AI Chatbot Enquiry" class="btn-primary">Enquire Now</a>
+          <a href="about.html" class="btn-gold-ghost">Learn About Us</a>
+        </div>
+      </div>
+      <div class="service-right">
+        <div class="features-box">
+          <span class="features-label">What's Included</span>
+          <ul class="features-list">
+            <li>Custom-trained AI on your business content and brand voice</li>
+            <li>Lead qualification and intelligent routing to your team</li>
+            <li>FAQ handling, booking flows, and support automation</li>
+            <li>Seamless integration with your website and tools</li>
+            <li>Multi-channel deployment (web, WhatsApp, and more)</li>
+            <li>Analytics dashboard to track conversations and conversions</li>
+            <li>Ongoing optimisation as your business evolves</li>
+          </ul>
+        </div>
+        <div class="process-box">
+          <span class="process-label">How It Works</span>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <div class="step-title">Business Deep-Dive</div>
+                <div class="step-desc">We map your customer journeys, common queries, and key conversion points.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <div class="step-title">Training & Scripting</div>
+                <div class="step-desc">The AI is trained on your content and scripted for your brand voice.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <div class="step-title">Testing & Refinement</div>
+                <div class="step-desc">We stress-test every scenario before it ever sees a real customer.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <div class="step-title">Deploy & Monitor</div>
+                <div class="step-desc">We launch, monitor performance, and keep refining for better outcomes.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVICE 03: AUTOMATION ── -->
+  <div class="service-block" id="automation">
+    <div class="service-inner reveal">
+      <div class="service-left">
+        <div class="service-index">
+          <div class="service-index-num">03</div>
+          <div class="service-index-icon">⟳</div>
+        </div>
+        <div class="service-name">Business Automation<br/><em>Systems</em></div>
+        <p class="service-desc">
+          Every hour your team spends on repetitive manual tasks is an hour not spent on growth. GeoBrif Digital identifies your most time-consuming workflows and <strong>replaces them with intelligent, automated pipelines</strong> that run without intervention.
+          <br/><br/>
+          From lead follow-ups to invoice processing, from CRM updates to internal notifications — we connect your tools and build systems that handle the routine so your people can focus on what only humans can do.
+        </p>
+        <div class="service-cta">
+          <a href="mailto:hello@geobrif.com?subject=Automation Enquiry" class="btn-primary">Enquire Now</a>
+          <a href="about.html" class="btn-gold-ghost">Learn About Us</a>
+        </div>
+      </div>
+      <div class="service-right">
+        <div class="features-box">
+          <span class="features-label">What's Included</span>
+          <ul class="features-list">
+            <li>Workflow audit to identify your highest-value automation opportunities</li>
+            <li>Tool integration across your existing tech stack (CRM, email, Sheets, etc.)</li>
+            <li>Automated lead nurture sequences and follow-up systems</li>
+            <li>Internal process automation — notifications, task creation, data sync</li>
+            <li>Custom triggers and conditional logic tailored to your operations</li>
+            <li>Error handling and monitoring to keep pipelines running cleanly</li>
+            <li>Documentation and training for your team on new workflows</li>
+          </ul>
+        </div>
+        <div class="process-box">
+          <span class="process-label">How It Works</span>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <div class="step-title">Workflow Audit</div>
+                <div class="step-desc">We map your current processes and identify the highest-ROI automation targets.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <div class="step-title">Architecture Design</div>
+                <div class="step-desc">We design the automation logic and tool connections before building anything.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <div class="step-title">Build & Integrate</div>
+                <div class="step-desc">We build and connect every component, testing each trigger and action.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <div class="step-title">Handover & Monitor</div>
+                <div class="step-desc">Your team is briefed and we monitor systems during the live period.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVICE 04: BUSINESS EMAIL ── -->
+  <div class="service-block" id="email">
+    <div class="service-inner reveal">
+      <div class="service-left">
+        <div class="service-index">
+          <div class="service-index-num">04</div>
+          <div class="service-index-icon">@</div>
+        </div>
+        <div class="service-name">Professional Business<br/><em>Email Setup</em></div>
+        <p class="service-desc">
+          Sending emails from a Gmail or Hotmail address tells the world your business isn't serious. A <strong>branded professional email</strong> is the baseline of digital credibility — and it needs to be done right.
+          <br/><br/>
+          We configure your entire business email infrastructure: custom domain email addresses, enterprise-grade security protocols, spam protection, and team management. Done once, done properly — so you never have to think about it again.
+        </p>
+        <div class="service-cta">
+          <a href="mailto:hello@geobrif.com?subject=Business Email Enquiry" class="btn-primary">Enquire Now</a>
+          <a href="about.html" class="btn-gold-ghost">Learn About Us</a>
+        </div>
+      </div>
+      <div class="service-right">
+        <div class="features-box">
+          <span class="features-label">What's Included</span>
+          <ul class="features-list">
+            <li>Custom domain email setup (e.g. you@yourbusiness.com)</li>
+            <li>Google Workspace or Microsoft 365 configuration</li>
+            <li>SPF, DKIM, and DMARC records for deliverability and security</li>
+            <li>Team inbox setup and user account management</li>
+            <li>Email signature design for a consistent professional appearance</li>
+            <li>Spam filtering and security hardening</li>
+            <li>Migration from existing email accounts if required</li>
+          </ul>
+        </div>
+        <div class="process-box">
+          <span class="process-label">How It Works</span>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <div class="step-title">Requirements Gathering</div>
+                <div class="step-desc">We confirm your domain, team size, and preferred email platform.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <div class="step-title">DNS & Platform Setup</div>
+                <div class="step-desc">We configure all DNS records and provision your email accounts.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <div class="step-title">Security & Testing</div>
+                <div class="step-desc">We verify deliverability, test authentication records, and harden security.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <div class="step-title">Handover & Training</div>
+                <div class="step-desc">Your team is onboarded and given full access to their new accounts.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SERVICE 05: BRANDING ── -->
+  <div class="service-block" id="branding">
+    <div class="service-inner reveal">
+      <div class="service-left">
+        <div class="service-index">
+          <div class="service-index-num">05</div>
+          <div class="service-index-icon">❋</div>
+        </div>
+        <div class="service-name">Digital Branding &<br/><em>Marketing Assets</em></div>
+        <p class="service-desc">
+          Your brand is the first thing people judge — and <strong>they judge fast.</strong> A weak visual identity costs you trust before you've had a chance to speak. A powerful one opens doors before you've said a word.
+          <br/><br/>
+          GeoBrif Digital crafts brand identities built for the digital age: bold, cohesive, and built to communicate authority and credibility at every touchpoint. From logo to launch assets, we ensure your business looks the part — every single time.
+        </p>
+        <div class="service-cta">
+          <a href="mailto:hello@geobrif.com?subject=Branding Enquiry" class="btn-primary">Enquire Now</a>
+          <a href="about.html" class="btn-gold-ghost">Learn About Us</a>
+        </div>
+      </div>
+      <div class="service-right">
+        <div class="features-box">
+          <span class="features-label">What's Included</span>
+          <ul class="features-list">
+            <li>Logo design — primary mark, variations, and favicon</li>
+            <li>Brand colour palette and typography system</li>
+            <li>Brand guidelines document for consistent future use</li>
+            <li>Social media profile assets and cover images</li>
+            <li>Business card and letterhead design</li>
+            <li>Pitch deck or presentation template</li>
+            <li>Digital marketing collateral (banners, ads, email headers)</li>
+          </ul>
+        </div>
+        <div class="process-box">
+          <span class="process-label">How It Works</span>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <div class="step-title">Brand Discovery</div>
+                <div class="step-desc">We explore your vision, audience, competitors, and brand personality.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <div class="step-title">Concept Presentation</div>
+                <div class="step-desc">We present initial logo concepts and direction for your feedback.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <div class="step-title">Refine & Expand</div>
+                <div class="step-desc">Approved direction is refined and extended across all brand assets.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <div class="step-title">Final Delivery</div>
+                <div class="step-desc">All files delivered in every format you need, with a full brand guide.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALL SERVICES OVERVIEW -->
+  <div class="overview-strip reveal">
+    <div class="overview-header">
+      <span class="section-tag">All Services</span>
+      <h2 class="section-title">Everything Under <em>One Roof</em></h2>
+      <p class="section-body">Jump to any service or combine them for compounded results.</p>
+    </div>
+    <div class="overview-grid">
+      <a href="#web-dev"    class="overview-card">
+        <span class="overview-icon">⬛</span>
+        <div class="overview-name">Web Development</div>
+        <div class="overview-arrow">↑</div>
+      </a>
+      <a href="#ai-chatbot" class="overview-card">
+        <span class="overview-icon">◈</span>
+        <div class="overview-name">AI Chatbots</div>
+        <div class="overview-arrow">↑</div>
+      </a>
+      <a href="#automation" class="overview-card">
+        <span class="overview-icon">⟳</span>
+        <div class="overview-name">Automation</div>
+        <div class="overview-arrow">↑</div>
+      </a>
+      <a href="#email"      class="overview-card">
+        <span class="overview-icon">@</span>
+        <div class="overview-name">Business Email</div>
+        <div class="overview-arrow">↑</div>
+      </a>
+      <a href="#branding"   class="overview-card">
+        <span class="overview-icon">❋</span>
+        <div class="overview-name">Branding</div>
+        <div class="overview-arrow">↑</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- CTA STRIP -->
+  <section id="cta-strip">
+    <span class="section-tag" style="display:block; margin-bottom:1.4rem;">Ready to Begin?</span>
+    <h2 class="section-title reveal">
+      Tell Us What You Need.<br/><em>We'll Handle the Rest.</em>
+    </h2>
+    <div class="cta-line"></div>
+    <p class="section-body reveal">
+      Every project starts with a conversation. Reach out today and we'll put together a tailored proposal within 48 hours — no obligation, no pressure.
+    </p>
+    <div class="cta-actions reveal" style="margin-top:0.5rem;">
+      <a href="mailto:hello@geobrif.com" class="btn-primary">Start a Conversation</a>
+      <a href="about.html" class="btn-ghost">Learn About Us</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Geo<span>Brif</span> Digital</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="why-us.html">Why Us</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 GeoBrif Digital. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Hamburger
+    const btn  = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    function closeMenu() {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    // Nav shadow
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 50 ? '0 4px 40px rgba(0,0,0,0.55)' : 'none';
+    }, { passive: true });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 70);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => io.observe(el));
+
+    // Active tab highlight on scroll
+    const sections = ['web-dev','ai-chatbot','automation','email','branding'];
+    const tabLinks  = document.querySelectorAll('.tab-link');
+    const onScroll  = () => {
+      let current = sections[0];
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 160) current = id;
+      });
+      tabLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+</body>
+</html>
