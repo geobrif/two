@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta name="description" content="Browse GeoBrif Digital's premium website templates, AI chatbots, logo designs and social media packs. Built for businesses in the USA and Europe."/>
+  <title>Templates &amp; Packages — GeoBrif Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* ══ VARIABLES ══ */
+    :root {
+      --obsidian: #0a0b0f;
+      --deep-navy: #0d1117;
+      --card-bg: #111520;
+      --card-border: #1e2538;
+      --gold: #c9a84c;
+      --gold-light: #e8c876;
+      --gold-dim: rgba(201,168,76,0.12);
+      --white: #f4f2ed;
+      --muted: #8b8ea8;
+      --green: #4caf82;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--obsidian); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
+
+    /* ══ NAV ══ */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 5vw; background: rgba(10,11,15,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.08); transition: box-shadow 0.3s; }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; letter-spacing: 0.05em; color: var(--white); text-decoration: none; z-index: 201; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.25s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta { border: 1px solid var(--gold); color: var(--gold); padding: 0.5rem 1.3rem; font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.25s, color 0.25s; white-space: nowrap; }
+    .nav-cta:hover { background: var(--gold); color: var(--obsidian); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 201; background: none; border: none; padding: 6px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); transition: all 0.3s ease; transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,11,15,0.98); backdrop-filter: blur(20px); z-index: 199; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; letter-spacing: 0.06em; transition: color 0.25s; }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .mob-cta { border: 1px solid var(--gold); color: var(--gold) !important; padding: 0.75rem 2.5rem; font-family: 'DM Sans', sans-serif !important; font-size: 0.82rem !important; letter-spacing: 0.12em !important; text-transform: uppercase; margin-top: 0.5rem; }
+
+    /* ══ SHARED ══ */
+    .section-tag { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; display: block; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 300; line-height: 1.12; margin-bottom: 1.1rem; }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-body { color: var(--muted); line-height: 1.85; font-size: 0.93rem; }
+    .btn-primary { background: var(--gold); color: var(--obsidian); border: none; padding: 0.9rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: background 0.25s, transform 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--white); border: 1px solid rgba(244,242,237,0.2); padding: 0.9rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: border-color 0.25s, color 0.25s; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-gold-ghost { background: transparent; color: var(--gold); border: 1px solid rgba(201,168,76,0.3); padding: 0.7rem 1.4rem; font-family: 'DM Sans', sans-serif; font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+    .btn-gold-ghost:hover { background: var(--gold); color: var(--obsidian); }
+    .btn-small { padding: 0.6rem 1.2rem; font-size: 0.74rem; }
+    .badge { display: inline-block; padding: 0.25rem 0.7rem; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid; }
+    .badge-gold { border-color: rgba(201,168,76,0.4); color: var(--gold); background: rgba(201,168,76,0.06); }
+    .badge-green { border-color: rgba(76,175,130,0.4); color: var(--green); background: rgba(76,175,130,0.06); }
+    .badge-muted { border-color: var(--card-border); color: var(--muted); }
+    ::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-track { background: var(--obsidian); } ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+    /* ══ REVEAL ANIMATION ══ */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shimmer { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+    @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    /* ══ HERO ══ */
+    #hero {
+      min-height: 92vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 9rem 5vw 5rem;
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .hero-bg-rings { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .hero-bg-rings::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 80vw; height: 80vw; max-width: 900px; max-height: 900px; border: 1px solid rgba(201,168,76,0.05); border-radius: 50%; }
+    .hero-bg-rings::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 55vw; height: 55vw; max-width: 620px; max-height: 620px; border: 1px solid rgba(201,168,76,0.08); border-radius: 50%; }
+    .hero-glow { position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 70vw; max-width: 800px; height: 60vh; background: radial-gradient(ellipse at top, rgba(42,58,110,0.35) 0%, transparent 65%); pointer-events: none; z-index: 0; }
+    .hero-content { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid rgba(201,168,76,0.25); padding: 0.4rem 1.2rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; animation: fadeUp 0.7s ease both; }
+    .hero-badge::before { content: '✦'; font-size: 0.6rem; }
+    .hero-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; animation: fadeUp 0.9s 0.1s ease both; }
+    .hero-h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub { font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--muted); max-width: 540px; margin: 1.5rem auto 0; line-height: 1.8; animation: fadeUp 1s 0.2s ease both; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem; animation: fadeUp 1.1s 0.3s ease both; }
+    .hero-stats { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(201,168,76,0.1); animation: fadeUp 1.2s 0.4s ease both; }
+    .hstat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--gold); }
+    .hstat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; z-index: 1; animation: fadeUp 1.4s 0.6s ease both; }
+    .hero-scroll span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: shimmer 2s infinite; }
+
+    /* ══ FILTER BAR ══ */
+    .filter-bar { background: var(--deep-navy); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); padding: 0 5vw; position: sticky; top: 62px; z-index: 100; overflow-x: auto; scrollbar-width: none; }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .filter-inner { display: flex; min-width: max-content; gap: 0; }
+    .filter-btn { background: none; border: none; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 1.1rem 1.4rem; cursor: pointer; border-bottom: 2px solid transparent; transition: color 0.25s, border-color 0.25s; white-space: nowrap; }
+    .filter-btn:hover { color: var(--white); }
+    .filter-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* ══ SECTION WRAPPER ══ */
+    .section-wrap { padding: 6rem 5vw; }
+    .section-wrap.alt { background: var(--deep-navy); }
+    .section-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3.5rem; }
+    .section-header-text {}
+    .section-header .section-body { max-width: 440px; }
+
+    /* ══ WEBSITE TEMPLATE CARDS ══ */
+    .templates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--card-border); border: 1px solid var(--card-border); }
+    .tpl-card { background: var(--card-bg); display: flex; flex-direction: column; overflow: hidden; transition: background 0.3s; position: relative; }
+    .tpl-card:hover { background: #141827; }
+    .tpl-preview { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--deep-navy); flex-shrink: 0; }
+    .tpl-preview-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .tpl-card:hover .tpl-preview-img { transform: scale(1.04); }
+    .tpl-preview-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; background: var(--deep-navy); }
+    .tpl-preview-icon { font-size: 2.5rem; opacity: 0.25; }
+    .tpl-preview-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); opacity: 0.5; }
+    .tpl-overlay { position: absolute; inset: 0; background: rgba(10,11,15,0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+    .tpl-card:hover .tpl-overlay { opacity: 1; }
+    .tpl-preview-badge { position: absolute; top: 0.8rem; left: 0.8rem; }
+    .tpl-body { padding: 1.6rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
+    .tpl-category { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+    .tpl-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; line-height: 1.2; }
+    .tpl-features { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .tpl-features li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.79rem; color: var(--muted); line-height: 1.4; }
+    .tpl-features li::before { content: '✦'; color: var(--gold); font-size: 0.4rem; flex-shrink: 0; margin-top: 0.45rem; }
+    .tpl-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--card-border); display: flex; flex-direction: column; gap: 0.8rem; }
+    .tpl-price { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--gold); }
+    .tpl-price span { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--muted); font-weight: 300; }
+    .tpl-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+    .tpl-line { position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
+    .tpl-card:hover .tpl-line { width: 100%; }
+
+    /* Colorful preview gradients per category */
+    .prev-restaurant { background: linear-gradient(135deg, #1a1208 0%, #2d1e0a 50%, #111520 100%); }
+    .prev-travel     { background: linear-gradient(135deg, #081824 0%, #0c2233 50%, #111520 100%); }
+    .prev-ecommerce  { background: linear-gradient(135deg, #0e1420 0%, #1a1030 50%, #111520 100%); }
+    .prev-realestate { background: linear-gradient(135deg, #0e180e 0%, #142010 50%, #111520 100%); }
+    .prev-medical    { background: linear-gradient(135deg, #0e1620 0%, #0c1828 50%, #111520 100%); }
+    .prev-corporate  { background: linear-gradient(135deg, #100d18 0%, #1a1028 50%, #111520 100%); }
+    .prev-whatsapp   { background: linear-gradient(135deg, #061408 0%, #0d2210 50%, #111520 100%); }
+    .prev-chatbot    { background: linear-gradient(135deg, #0c0e18 0%, #101428 50%, #111520 100%); }
+    .prev-logo       { background: linear-gradient(135deg, #180e08 0%, #2a1a08 50%, #111520 100%); }
+    .prev-social     { background: linear-gradient(135deg, #100c1e 0%, #1a0e2a 50%, #111520 100%); }
+
+    /* SVG mockup art inside preview */
+    .preview-art { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 1.2rem; }
+    .preview-art svg { width: 100%; height: 100%; max-height: 140px; }
+
+    /* ══ CHATBOT CARDS ══ */
+    .chatbot-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--card-border); border: 1px solid var(--card-border); }
+    .bot-card { background: var(--card-bg); overflow: hidden; transition: background 0.3s; position: relative; }
+    .bot-card:hover { background: #141827; }
+    .bot-preview { aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .bot-preview-inner { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.2rem; width: 100%; }
+    .bot-bubble { padding: 0.55rem 0.9rem; font-size: 0.72rem; border-radius: 0; max-width: 80%; }
+    .bot-bubble.bot-msg { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2); color: var(--white); align-self: flex-start; border-left: 2px solid var(--gold); }
+    .bot-bubble.user-msg { background: rgba(201,168,76,0.18); color: var(--white); align-self: flex-end; }
+    .bot-badge-wrap { position: absolute; top: 0.8rem; right: 0.8rem; }
+    .bot-body { padding: 1.6rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .bot-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; }
+    .bot-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+    .bot-features { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .bot-tag { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--card-border); color: var(--muted); padding: 0.25rem 0.65rem; transition: border-color 0.2s, color 0.2s; }
+    .bot-tag:hover { border-color: var(--gold); color: var(--gold); }
+    .bot-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; padding-top: 1rem; border-top: 1px solid var(--card-border); }
+    .bot-price { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--gold); }
+    .bot-line { position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
+    .bot-card:hover .bot-line { width: 100%; }
+
+    /* ══ LOGO GRID ══ */
+    .logo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--card-border); border: 1px solid var(--card-border); }
+    .logo-item { background: var(--card-bg); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; transition: background 0.3s; }
+    .logo-item:hover { background: #141827; }
+    .logo-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; padding: 1.5rem; transition: transform 0.3s; }
+    .logo-item:hover .logo-inner { transform: scale(1.05); }
+    .logo-icon-wrap { width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; }
+    .logo-name { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-align: center; }
+    .logo-overlay { position: absolute; inset: 0; background: rgba(10,11,15,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+    .logo-item:hover .logo-overlay { opacity: 1; }
+    .logo-cta-wrap { text-align: center; margin-top: 3rem; }
+
+    /* ══ SOCIAL PACKS ══ */
+    .social-preview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 3rem; }
+    .social-post { background: var(--card-bg); border: 1px solid var(--card-border); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: transform 0.3s; }
+    .social-post:hover { transform: translateY(-4px); }
+    .social-post-inner { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 1rem; }
+    .social-post-tag { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .social-post-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; line-height: 1.2; }
+    .packs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--card-border); border: 1px solid var(--card-border); }
+    .pack-card { background: var(--card-bg); padding: 2.5rem 2.2rem; display: flex; flex-direction: column; gap: 1.2rem; position: relative; overflow: hidden; transition: background 0.3s; }
+    .pack-card.featured { background: rgba(201,168,76,0.04); border-top: 2px solid var(--gold); }
+    .pack-card:hover { background: #141827; }
+    .pack-card.featured:hover { background: rgba(201,168,76,0.08); }
+    .pack-popular { position: absolute; top: 1rem; right: 1rem; }
+    .pack-tier { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    .pack-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; }
+    .pack-price { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300; color: var(--gold); line-height: 1; }
+    .pack-price small { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--muted); font-weight: 300; }
+    .pack-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; }
+    .pack-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .pack-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
+    .pack-list li::before { content: '✦'; color: var(--gold); font-size: 0.4rem; flex-shrink: 0; margin-top: 0.48rem; }
+    .pack-list li.included { color: var(--white); }
+    .pack-cta { margin-top: auto; padding-top: 1.2rem; border-top: 1px solid var(--card-border); display: flex; flex-direction: column; gap: 0.6rem; }
+    .pack-line { position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
+    .pack-card:hover .pack-line { width: 100%; }
+
+    /* ══ FINAL CTA ══ */
+    #final-cta { padding: 8rem 5vw; text-align: center; position: relative; overflow: hidden; }
+    #final-cta::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(700px,90vw); height: min(700px,90vw); background: radial-gradient(circle, rgba(42,58,110,0.25) 0%, transparent 70%); pointer-events: none; }
+    .cta-deco-line { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 0 auto 2rem; }
+    .final-cta-content { position: relative; z-index: 1; }
+    .final-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem; }
+    .btn-whatsapp { background: #25D366; color: #fff; border: none; padding: 0.9rem 2rem; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: background 0.25s, transform 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .btn-whatsapp:hover { background: #20ba5a; transform: translateY(-2px); }
+    .trust-row { display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap; margin-top: 4rem; }
+    .trust-item { display: flex; align-items: center; gap: 0.7rem; font-size: 0.82rem; color: var(--muted); }
+    .trust-icon { color: var(--gold); font-size: 1rem; }
+
+    /* ══ FOOTER ══ */
+    footer { padding: 2rem 5vw; border-top: 1px solid rgba(201,168,76,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; }
+    .footer-logo span { color: var(--gold); }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.07em; }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.72rem; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.25s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ══ RESPONSIVE ══ */
+    @media (max-width: 1100px) { .templates-grid { grid-template-columns: repeat(2, 1fr); } .logo-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; } .hamburger { display: flex; }
+      .templates-grid { grid-template-columns: 1fr 1fr; }
+      .chatbot-grid { grid-template-columns: 1fr; }
+      .packs-grid { grid-template-columns: 1fr; }
+      .social-preview { grid-template-columns: repeat(2, 1fr); }
+      .logo-grid { grid-template-columns: repeat(3, 1fr); }
+      footer { flex-direction: column; align-items: center; text-align: center; gap: 1.2rem; }
+      .footer-links { justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      .templates-grid { grid-template-columns: 1fr; }
+      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+      .social-preview { grid-template-columns: 1fr 1fr; }
+      .section-wrap { padding: 4rem 5vw; }
+      .hero-stats { gap: 1.5rem; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; max-width: 320px; justify-content: center; }
+      .final-cta-actions { flex-direction: column; align-items: center; }
+      .final-cta-actions > * { width: 100%; max-width: 320px; justify-content: center; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 380px) { .hero-h1 { font-size: 2.2rem; } .nav-logo { font-size: 1.2rem; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">Geo<span>Brif</span> Digital</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="why-us.html">Why Us</a></li>
+    <li><a href="templates.html" class="active">Templates</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Started</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html"    onclick="closeMenu()">Home</a>
+  <a href="about.html"    onclick="closeMenu()">About</a>
+  <a href="services.html" onclick="closeMenu()">Services</a>
+  <a href="why-us.html"   onclick="closeMenu()">Why Us</a>
+  <a href="templates.html" onclick="closeMenu()">Templates</a>
+  <a href="faq.html"      onclick="closeMenu()">FAQ</a>
+  <a href="contact.html"  onclick="closeMenu()">Contact</a>
+  <a href="contact.html"  onclick="closeMenu()" class="mob-cta">Get Started</a>
+</div>
+
+<!-- ═══════════════════════════════════════
+     1. HERO
+═══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg-rings"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Premium Digital Solutions</span>
+    <h1 class="hero-h1">Choose Your Perfect<br/><em>Digital Solution</em></h1>
+    <p class="hero-sub">Explore professional website templates, AI chatbots, logo designs and social media packs — crafted for businesses ready to compete at the highest level.</p>
+    <div class="hero-actions">
+      <a href="#website-templates" class="btn-primary">&#9654; View Templates</a>
+      <a href="contact.html" class="btn-ghost">&#128197; Book a Meeting</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hstat-num">50+</div><div class="hstat-label">Templates Available</div></div>
+      <div><div class="hstat-num">48h</div><div class="hstat-label">Delivery Starts</div></div>
+      <div><div class="hstat-num">100%</div><div class="hstat-label">Custom Tailored</div></div>
+      <div><div class="hstat-num">&#9733; 5.0</div><div class="hstat-label">Client Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll to Explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filterBar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="scrollTo('#website-templates')">&#127760; Websites</button>
+    <button class="filter-btn" onclick="scrollTo('#chatbots')">&#129302; AI Chatbots</button>
+    <button class="filter-btn" onclick="scrollTo('#logos')">&#10022; Logo Design</button>
+    <button class="filter-btn" onclick="scrollTo('#social')">&#128247; Social Media</button>
+    <button class="filter-btn" onclick="scrollTo('#final-cta')">&#128172; Get a Quote</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     2. WEBSITE TEMPLATES
+═══════════════════════════════════════ -->
+<section class="section-wrap" id="website-templates">
+  <div class="section-header reveal">
+    <div class="section-header-text">
+      <span class="section-tag">Most Popular</span>
+      <h2 class="section-title">Professional Website<br/><em>Templates</em></h2>
+      <p class="section-body">Stunning, conversion-optimised website designs — customised to your brand, content, and goals. Every template is the starting point, not the destination.</p>
+    </div>
+    <a href="contact.html" class="btn-ghost btn-small">Request Custom Build &#8594;</a>
+  </div>
+  <div class="templates-grid">
+
+    <!-- Restaurant -->
+    <div class="tpl-card reveal">
+      <div class="tpl-preview prev-restaurant">
+        <div class="preview-art">
+          <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="10" width="240" height="140" rx="0" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+            <rect x="20" y="10" width="240" height="45" fill="rgba(201,168,76,0.08)"/>
+            <text x="140" y="38" text-anchor="middle" fill="rgba(201,168,76,0.7)" font-size="14" font-family="Georgia">La Maison</text>
+            <rect x="40" y="65" width="80" height="50" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+            <rect x="130" y="65" width="80" height="50" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+            <rect x="40" y="125" width="60" height="8" rx="0" fill="rgba(201,168,76,0.3)"/>
+            <rect x="110" y="125" width="40" height="8" rx="0" fill="rgba(201,168,76,0.1)"/>
+            <circle cx="80" cy="90" r="18" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+            <text x="80" y="94" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-size="10">&#127869;</text>
+            <text x="170" y="94" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-size="10">&#127861;</text>
+          </svg>
+        </div>
+        <div class="tpl-overlay">
+          <a href="contact.html?tpl=restaurant" class="btn-primary btn-small">Preview</a>
+        </div>
+        <div class="tpl-preview-badge"><span class="badge badge-green">Popular</span></div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-category">Food &amp; Hospitality</div>
+        <div class="tpl-name">Restaurant Website</div>
+        <ul class="tpl-features">
+          <li>Online menu with categories &amp; photos</li>
+          <li>Reservation &amp; table booking system</li>
+          <li>Gallery, reviews &amp; location map</li>
+          <li>Mobile-first, fast-loading design</li>
+          <li>WhatsApp order integration</li>
+        </ul>
+        <div class="tpl-footer">
+          <div class="tpl-price">From $499 <span>/ custom delivery</span></div>
+          <div class="tpl-actions">
+            <a href="contact.html?tpl=restaurant&action=demo" class="btn-ghost btn-small" style="justify-content:center;">&#128065; View Live Demo</a>
+            <a href="contact.html?tpl=restaurant&action=customize" class="btn-gold-ghost btn-small" style="justify-content:center;">&#9998; Customise This</a>
+            <a href="contact.html?tpl=restaurant&action=quote" class="btn-primary btn-small" style="justify-content:center;">&#128172; Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-line"></div>
+    </div>
+
+    <!-- Travel -->
+    <div class="tpl-card reveal">
+      <div class="tpl-preview prev-travel">
+        <div class="preview-art">
+          <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="10" width="240" height="140" fill="rgba(12,34,51,0.6)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <rect x="20" y="10" width="240" height="60" fill="rgba(8,24,36,0.8)"/>
+            <ellipse cx="140" cy="35" rx="55" ry="22" fill="none" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+            <text x="140" y="40" text-anchor="middle" fill="rgba(201,168,76,0.65)" font-size="12" font-family="Georgia">Explore. Dream. Discover.</text>
+            <rect x="35" y="80" width="65" height="55" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+            <rect x="108" y="80" width="65" height="55" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+            <rect x="181" y="80" width="64" height="55" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+            <text x="67" y="112" text-anchor="middle" fill="rgba(201,168,76,0.3)" font-size="16">&#127754;</text>
+            <text x="140" y="112" text-anchor="middle" fill="rgba(201,168,76,0.3)" font-size="16">&#9968;</text>
+            <text x="213" y="112" text-anchor="middle" fill="rgba(201,168,76,0.3)" font-size="16">&#9992;</text>
+          </svg>
+        </div>
+        <div class="tpl-overlay"><a href="contact.html?tpl=travel" class="btn-primary btn-small">Preview</a></div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-category">Travel &amp; Tourism</div>
+        <div class="tpl-name">Travel Agency Website</div>
+        <ul class="tpl-features">
+          <li>Tour packages with booking &amp; pricing</li>
+          <li>Destination galleries &amp; itineraries</li>
+          <li>Customer testimonials &amp; reviews</li>
+          <li>WhatsApp enquiry integration</li>
+          <li>Multi-language ready</li>
+        </ul>
+        <div class="tpl-footer">
+          <div class="tpl-price">From $549 <span>/ custom delivery</span></div>
+          <div class="tpl-actions">
+            <a href="contact.html?tpl=travel&action=demo" class="btn-ghost btn-small" style="justify-content:center;">&#128065; View Live Demo</a>
+            <a href="contact.html?tpl=travel&action=customize" class="btn-gold-ghost btn-small" style="justify-content:center;">&#9998; Customise This</a>
+            <a href="contact.html?tpl=travel&action=quote" class="btn-primary btn-small" style="justify-content:center;">&#128172; Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-line"></div>
+    </div>
+
+    <!-- Ecommerce -->
+    <div class="tpl-card reveal">
+      <div class="tpl-preview prev-ecommerce">
+        <div class="preview-art">
+          <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="10" width="240" height="30" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <text x="60" y="30" fill="rgba(201,168,76,0.6)" font-size="10" font-family="Georgia">ShopLux</text>
+            <rect x="200" y="16" width="50" height="18" fill="rgba(201,168,76,0.2)" rx="0"/>
+            <text x="225" y="29" text-anchor="middle" fill="rgba(201,168,76,0.8)" font-size="9">&#128722; Cart</text>
+            <rect x="20" y="48" width="60" height="70" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <rect x="88" y="48" width="60" height="70" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <rect x="156" y="48" width="60" height="70" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <rect x="224" y="48" width="36" height="70" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
+            <rect x="28" y="100" width="44" height="10" fill="rgba(201,168,76,0.25)" rx="0"/>
+            <rect x="96" y="100" width="44" height="10" fill="rgba(201,168,76,0.25)" rx="0"/>
+            <rect x="164" y="100" width="44" height="10" fill="rgba(201,168,76,0.25)" rx="0"/>
+            <text x="50" y="77" text-anchor="middle" fill="rgba(201,168,76,0.2)" font-size="14">&#128084;</text>
+            <text x="118" y="77" text-anchor="middle" fill="rgba(201,168,76,0.2)" font-size="14">&#128149;</text>
+            <text x="186" y="77" text-anchor="middle" fill="rgba(201,168,76,0.2)" font-size="14">&#9781;</text>
+            <rect x="20" y="126" width="240" height="22" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="tpl-overlay"><a href="contact.html?tpl=ecommerce" class="btn-primary btn-small">Preview</a></div>
+        <div class="tpl-preview-badge"><span class="badge badge-gold">Best Value</span></div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-category">Retail &amp; E-commerce</div>
+        <div class="tpl-name">E-Commerce Store</div>
+        <ul class="tpl-features">
+          <li>Product catalogue with filter &amp; search</li>
+          <li>Secure checkout &amp; payment gateway</li>
+          <li>Inventory &amp; order management</li>
+          <li>Abandoned cart recovery</li>
+          <li>SEO &amp; product schema markup</li>
+        </ul>
+        <div class="tpl-footer">
+          <div class="tpl-price">From $799 <span>/ custom delivery</span></div>
+          <div class="tpl-actions">
+            <a href="contact.html?tpl=ecommerce&action=demo" class="btn-ghost btn-small" style="justify-content:center;">&#128065; View Live Demo</a>
+            <a href="contact.html?tpl=ecommerce&action=customize" class="btn-gold-ghost btn-small" style="justify-content:center;">&#9998; Customise This</a>
+            <a href="contact.html?tpl=ecommerce&action=quote" class="btn-primary btn-small" style="justify-content:center;">&#128172; Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-line"></div>
+    </div>
+
+    <!-- Real Estate -->
+    <div class="tpl-card reveal">
+      <div class="tpl-preview prev-realestate">
+        <div class="preview-art">
+          <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="10" width="240" height="140" fill="rgba(14,24,14,0.5)" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
+            <polygon points="140,18 240,60 240,150 40,150 40,60" fill="none" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+            <rect x="60" y="80" width="50" height="55" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+            <rect x="120" y="70" width="65" height="65" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.18)" stroke-width="1"/>
+            <rect x="195" y="85" width="45" height="50" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+            <text x="152" y="100" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="18">&#127968;</text>
+            <rect x="40" y="30" width="90" height="22" fill="rgba(201,168,76,0.08)" rx="0"/>
+            <text x="85" y="45" text-anchor="middle" fill="rgba(201,168,76,0.6)" font-size="10" font-family="Georgia">Find Your Dream Home</text>
+          </svg>
+        </div>
+        <div class="tpl-overlay"><a href="contact.html?tpl=realestate" class="btn-primary btn-small">Preview</a></div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-category">Property &amp; Real Estate</div>
+        <div class="tpl-name">Real Estate Website</div>
+        <ul class="tpl-features">
+          <li>Property listings with advanced search filters</li>
+          <li>Virtual tour &amp; photo gallery integration</li>
+          <li>Lead capture forms for every listing</li>
+          <li>Google Maps &amp; neighbourhood data</li>
+          <li>Agent profiles &amp; contact management</li>
+        </ul>
+        <div class="tpl-footer">
+          <div class="tpl-price">From $649 <span>/ custom delivery</span></div>
+          <div class="tpl-actions">
+            <a href="contact.html?tpl=realestate&action=demo" class="btn-ghost btn-small" style="justify-content:center;">&#128065; View Live Demo</a>
+            <a href="contact.html?tpl=realestate&action=customize" class="btn-gold-ghost btn-small" style="justify-content:center;">&#9998; Customise This</a>
+            <a href="contact.html?tpl=realestate&action=quote" class="btn-primary btn-small" style="justify-content:center;">&#128172; Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-line"></div>
+    </div>
+
+    <!-- Medical -->
+    <div class="tpl-card reveal">
+      <div class="tpl-preview prev-medical">
+        <div class="preview-art">
+          <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="10" width="240" height="140" fill="rgba(14,22,32,0.6)" stroke="rgba(201,168,76,0.08)" stroke-width="1"/>
+            <rect x="20" y="10" width="240" height="40" fill="rgba(12,24,40,0.9)"/>
+            <text x="140" y="36" text-anchor="middle" fill="rgba(201,168,76,0.6)" font-size="12" font-family="Georgia">MediCare Clinic</text>
+            <rect x="40" y="60" width="85" height="75" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <rect x="135" y="60" width="125" height="35" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+            <rect x="135" y="100" width="125" height="35" fill="rgba(201,168,76,0.06)" stroke="rgba(201,168,76,0.12)" stroke-width="1"/>
+            <text x="82" y="103" text-anchor="middle" fill="rgba(201,168,76,0.35)" font-size="22">&#9877;</text>
+            <text x="197" y="80" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-size="9">&#128197; Book Appointment</text>
+            <text x="197" y="120" text-anchor="middle" fill="rgba(201,168,76,0.4)" font-size="9">&#128222; Contact Clinic</text>
+          </svg>
+        </div>
+        <div class="tpl-overlay"><a href="contact.html?tpl=medical" class="btn-primary btn-small">Preview</a></div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-category">Healthcare &amp; Medical</div>
+        <div class="tpl-name">Medical Clinic Website</div>
+        <ul class="tpl-features">
+          <li>Online appointment booking system</li>
+          <li>Doctor &amp; specialist profiles</li>
+          <li>Services, treatments &amp; pricing pages</li>
+          <li>Patient portal &amp; contact forms</li>
+          <li>HIPAA-aware design &amp; privacy focus</li>
+        </ul>
+        <div class="tpl-footer">
+          <div class="tpl-price">From $599 <span>/ custom delivery</span></div>
+          <div class="tpl-actions">
+            <a href="contact.html?tpl=medical&action=demo" class="btn-ghost btn-small" style="justify-content:center;">&#128065; View Live Demo</a>
+            <a href="contact.html?tpl=medical&action=customize" class="btn-gold-ghost btn-small" style="justify-content:center;">&#9998; Customise This</a>
+            <a href="contact.html?tpl=medical&action=quote" class="btn-primary btn-small" style="justify-content:center;">&#128172; Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-line"></div>
+    </div>
+
+    <!-- Corporate -->
+    <div class="tpl-card reveal">
+      <div class="tpl-preview prev-corporate">
+        <div class="preview-art">
+          <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="10" width="240" height="140" fill="rgba(16,13,24,0.6)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <rect x="20" y="10" width="240" height="55" fill="rgba(201,168,76,0.05)"/>
+            <text x="140" y="28" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="8" letter-spacing="3">NEXUS CORPORATION</text>
+            <text x="140" y="48" text-anchor="middle" fill="rgba(244,242,237,0.7)" font-size="13" font-family="Georgia">Building the Future</text>
+            <rect x="35" y="75" width="55" height="55" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <rect x="98" y="75" width="55" height="55" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <rect x="161" y="75" width="55" height="55" fill="rgba(201,168,76,0.04)" stroke="rgba(201,168,76,0.1)" stroke-width="1"/>
+            <text x="62" y="107" text-anchor="middle" fill="rgba(201,168,76,0.3)" font-size="16">&#127970;</text>
+            <text x="125" y="107" text-anchor="middle" fill="rgba(201,168,76,0.3)" font-size="16">&#128200;</text>
+            <text x="188" y="107" text-anchor="middle" fill="rgba(201,168,76,0.3)" font-size="16">&#128101;</text>
+          </svg>
+        </div>
+        <div class="tpl-overlay"><a href="contact.html?tpl=corporate" class="btn-primary btn-small">Preview</a></div>
+        <div class="tpl-preview-badge"><span class="badge badge-muted">Enterprise</span></div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-category">Business &amp; Corporate</div>
+        <div class="tpl-name">Corporate Business Website</div>
+        <ul class="tpl-features">
+          <li>Company overview, team &amp; culture pages</li>
+          <li>Services &amp; solutions showcase</li>
+          <li>Case studies &amp; client portfolio</li>
+          <li>Blog, news &amp; press releases</li>
+          <li>Multi-location &amp; multi-department ready</li>
+        </ul>
+        <div class="tpl-footer">
+          <div class="tpl-price">From $699 <span>/ custom delivery</span></div>
+          <div class="tpl-actions">
+            <a href="contact.html?tpl=corporate&action=demo" class="btn-ghost btn-small" style="justify-content:center;">&#128065; View Live Demo</a>
+            <a href="contact.html?tpl=corporate&action=customize" class="btn-gold-ghost btn-small" style="justify-content:center;">&#9998; Customise This</a>
+            <a href="contact.html?tpl=corporate&action=quote" class="btn-primary btn-small" style="justify-content:center;">&#128172; Get Quote</a>
+          </div>
+        </div>
+      </div>
+      <div class="tpl-line"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     3. AI CHATBOT TEMPLATES
+═══════════════════════════════════════ -->
+<section class="section-wrap alt" id="chatbots">
+  <div class="section-header reveal">
+    <div class="section-header-text">
+      <span class="section-tag">AI-Powered</span>
+      <h2 class="section-title">Intelligent Chatbot<br/><em>Templates</em></h2>
+      <p class="section-body">Pre-built chatbot frameworks — trained on your business data and deployed in days, not months. Your best customer service agent, working 24/7.</p>
+    </div>
+    <a href="contact.html?service=ai" class="btn-ghost btn-small">Custom Bot &#8594;</a>
+  </div>
+  <div class="chatbot-grid">
+
+    <!-- WhatsApp Bot -->
+    <div class="bot-card reveal">
+      <div class="bot-preview prev-whatsapp">
+        <div class="bot-preview-inner">
+          <div class="bot-bubble bot-msg">&#128075; Hi! How can I help you today?</div>
+          <div class="bot-bubble user-msg">I need support with my order</div>
+          <div class="bot-bubble bot-msg">Sure! Can you share your order number? I'll look that up for you right away &#128269;</div>
+          <div class="bot-bubble user-msg">It's #GB-10482</div>
+          <div class="bot-bubble bot-msg">Found it! Your order is out for delivery. ETA: today by 5pm &#9989;</div>
+        </div>
+        <div class="bot-badge-wrap"><span class="badge badge-green">WhatsApp</span></div>
+      </div>
+      <div class="bot-body">
+        <div class="bot-name">Customer Support Bot</div>
+        <div class="bot-desc">Handles customer queries, order tracking, FAQs, refunds, and escalations — automatically. Deployed on WhatsApp for instant 24/7 support without hiring additional staff.</div>
+        <div class="bot-features">
+          <span class="bot-tag">WhatsApp Integration</span>
+          <span class="bot-tag">Order Tracking</span>
+          <span class="bot-tag">FAQ Automation</span>
+          <span class="bot-tag">Live Handoff</span>
+          <span class="bot-tag">Multi-language</span>
+        </div>
+        <div class="bot-footer">
+          <div class="bot-price">From $399</div>
+          <a href="contact.html?tpl=support-bot" class="btn-primary btn-small">Get This Bot</a>
+        </div>
+      </div>
+      <div class="bot-line"></div>
+    </div>
+
+    <!-- Restaurant Reservation Bot -->
+    <div class="bot-card reveal">
+      <div class="bot-preview prev-chatbot">
+        <div class="bot-preview-inner">
+          <div class="bot-bubble bot-msg">&#127869; Welcome to La Maison! Book a table?</div>
+          <div class="bot-bubble user-msg">Yes, 2 people, Saturday 8pm</div>
+          <div class="bot-bubble bot-msg">Perfect! I have a table available. Any dietary requirements?</div>
+          <div class="bot-bubble user-msg">Vegetarian please</div>
+          <div class="bot-bubble bot-msg">&#9989; Booked! Confirmation sent to your email.</div>
+        </div>
+        <div class="bot-badge-wrap"><span class="badge badge-gold">Hospitality</span></div>
+      </div>
+      <div class="bot-body">
+        <div class="bot-name">Restaurant Reservation Bot</div>
+        <div class="bot-desc">Handles table bookings, dietary preferences, special occasions, and waitlist management automatically — reducing no-shows and freeing up your staff for what matters most.</div>
+        <div class="bot-features">
+          <span class="bot-tag">Table Booking</span>
+          <span class="bot-tag">SMS Confirmation</span>
+          <span class="bot-tag">Menu Queries</span>
+          <span class="bot-tag">Special Events</span>
+          <span class="bot-tag">Reminder Alerts</span>
+        </div>
+        <div class="bot-footer">
+          <div class="bot-price">From $349</div>
+          <a href="contact.html?tpl=reservation-bot" class="btn-primary btn-small">Get This Bot</a>
+        </div>
+      </div>
+      <div class="bot-line"></div>
+    </div>
+
+    <!-- Ecommerce Bot -->
+    <div class="bot-card reveal">
+      <div class="bot-preview prev-whatsapp" style="background:linear-gradient(135deg,#0e1024 0%,#161030 50%,#111520 100%);">
+        <div class="bot-preview-inner">
+          <div class="bot-bubble bot-msg">&#128722; Hi! Looking for something specific today?</div>
+          <div class="bot-bubble user-msg">Do you have leather bags under $200?</div>
+          <div class="bot-bubble bot-msg">Yes! I found 4 options. The Milano Tote is a bestseller at $179 &#128156;</div>
+          <div class="bot-bubble user-msg">Add it to cart</div>
+          <div class="bot-bubble bot-msg">Done! &#9989; Ready to checkout? I can apply your discount code.</div>
+        </div>
+        <div class="bot-badge-wrap"><span class="badge badge-muted">E-Commerce</span></div>
+      </div>
+      <div class="bot-body">
+        <div class="bot-name">E-Commerce Order Bot</div>
+        <div class="bot-desc">Guides customers through product discovery, cart management, discount codes, and checkout — intelligently upselling and cross-selling to increase your average order value.</div>
+        <div class="bot-features">
+          <span class="bot-tag">Product Search</span>
+          <span class="bot-tag">Cart Management</span>
+          <span class="bot-tag">Upsell Flows</span>
+          <span class="bot-tag">Order Status</span>
+          <span class="bot-tag">Returns</span>
+        </div>
+        <div class="bot-footer">
+          <div class="bot-price">From $449</div>
+          <a href="contact.html?tpl=ecommerce-bot" class="btn-primary btn-small">Get This Bot</a>
+        </div>
+      </div>
+      <div class="bot-line"></div>
+    </div>
+
+    <!-- Lead Gen Bot -->
+    <div class="bot-card reveal">
+      <div class="bot-preview prev-chatbot" style="background:linear-gradient(135deg,#120e1e 0%,#1e1030 50%,#111520 100%);">
+        <div class="bot-preview-inner">
+          <div class="bot-bubble bot-msg">&#128200; Hi! What brings you here today?</div>
+          <div class="bot-bubble user-msg">Looking for a website for my business</div>
+          <div class="bot-bubble bot-msg">Great! What's your budget range? I'll match you with the right package.</div>
+          <div class="bot-bubble user-msg">Around $500–800</div>
+          <div class="bot-bubble bot-msg">Perfect fit! Our Pro Website Package starts at $549. Can I grab your email for a proposal? &#128203;</div>
+        </div>
+        <div class="bot-badge-wrap"><span class="badge badge-gold">Lead Gen</span></div>
+      </div>
+      <div class="bot-body">
+        <div class="bot-name">Lead Generation Bot</div>
+        <div class="bot-desc">Qualifies visitors, captures contact details, scores leads by intent, and routes high-value prospects to your sales team — automatically filling your pipeline around the clock.</div>
+        <div class="bot-features">
+          <span class="bot-tag">Lead Scoring</span>
+          <span class="bot-tag">CRM Integration</span>
+          <span class="bot-tag">Email Capture</span>
+          <span class="bot-tag">Qualification Flow</span>
+          <span class="bot-tag">Auto Follow-up</span>
+        </div>
+        <div class="bot-footer">
+          <div class="bot-price">From $429</div>
+          <a href="contact.html?tpl=lead-bot" class="btn-primary btn-small">Get This Bot</a>
+        </div>
+      </div>
+      <div class="bot-line"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     4. LOGO DESIGN
+═══════════════════════════════════════ -->
+<section class="section-wrap" id="logos">
+  <div class="section-header reveal">
+    <div class="section-header-text">
+      <span class="section-tag">Brand Identity</span>
+      <h2 class="section-title">Logo Design<br/><em>Samples</em></h2>
+      <p class="section-body">Every logo we create is custom-crafted — built to communicate authority, trust, and personality at first glance. These samples show the range of styles we work in.</p>
+    </div>
+    <a href="contact.html?service=branding" class="btn-primary btn-small">Order Logo Package &#8594;</a>
+  </div>
+  <div class="logo-grid reveal">
+    <!-- 12 logo mockups with SVG art -->
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><polygon points="32,4 60,56 4,56" fill="none" stroke="#c9a84c" stroke-width="1.5"/><text x="32" y="42" text-anchor="middle" fill="#c9a84c" font-size="10" font-family="Georgia" font-style="italic">APEX</text></svg></div>
+      <div class="logo-name">Architecture Firm</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=architecture" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><circle cx="32" cy="32" r="26" fill="none" stroke="#c9a84c" stroke-width="1.5"/><circle cx="32" cy="32" r="16" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="1"/><text x="32" y="36" text-anchor="middle" fill="#c9a84c" font-size="9" font-family="Georgia" letter-spacing="2">LUMIERE</text></svg></div>
+      <div class="logo-name">Luxury Spa</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=spa" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><rect x="8" y="20" width="48" height="34" fill="none" stroke="#c9a84c" stroke-width="1.5"/><rect x="20" y="10" width="24" height="16" fill="none" stroke="rgba(201,168,76,0.5)" stroke-width="1"/><text x="32" y="41" text-anchor="middle" fill="#c9a84c" font-size="8" font-family="Georgia" letter-spacing="1">NEXUS</text></svg></div>
+      <div class="logo-name">Tech Company</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=tech" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><path d="M32 8 L56 44 L8 44 Z" fill="none" stroke="#c9a84c" stroke-width="1.5"/><circle cx="32" cy="36" r="6" fill="none" stroke="rgba(201,168,76,0.6)" stroke-width="1"/><text x="32" y="58" text-anchor="middle" fill="#c9a84c" font-size="7" letter-spacing="2" font-family="Georgia">SUMMIT</text></svg></div>
+      <div class="logo-name">Consulting Firm</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=consulting" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><path d="M32 10 Q52 20 52 40 Q32 56 12 40 Q12 20 32 10Z" fill="none" stroke="#c9a84c" stroke-width="1.5"/><text x="32" y="36" text-anchor="middle" fill="#c9a84c" font-size="11" font-family="Georgia" font-style="italic">Bloom</text></svg></div>
+      <div class="logo-name">Beauty Brand</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=beauty" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><rect x="12" y="12" width="40" height="40" fill="none" stroke="#c9a84c" stroke-width="1.5" transform="rotate(45 32 32)"/><text x="32" y="36" text-anchor="middle" fill="#c9a84c" font-size="9" font-family="Georgia" letter-spacing="1">VANCE</text></svg></div>
+      <div class="logo-name">Law Firm</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=law" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><polygon points="32,8 42,28 62,28 46,42 52,62 32,50 12,62 18,42 2,28 22,28" fill="none" stroke="#c9a84c" stroke-width="1.5"/><text x="32" y="36" text-anchor="middle" fill="#c9a84c" font-size="7" font-family="Georgia">STELLAR</text></svg></div>
+      <div class="logo-name">Events Agency</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=events" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><path d="M32 12 L44 28 L58 28 L46 40 L50 56 L32 46 L14 56 L18 40 L6 28 L20 28 Z" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="1"/><text x="32" y="34" text-anchor="middle" fill="#c9a84c" font-size="14" font-family="Georgia" font-weight="bold">R</text><text x="32" y="50" text-anchor="middle" fill="rgba(201,168,76,0.6)" font-size="6" letter-spacing="2">RETAIL CO</text></svg></div>
+      <div class="logo-name">Retail Brand</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=retail" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><ellipse cx="32" cy="32" rx="26" ry="14" fill="none" stroke="#c9a84c" stroke-width="1.5"/><ellipse cx="32" cy="32" rx="14" ry="26" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="1"/><circle cx="32" cy="32" r="4" fill="#c9a84c" opacity="0.4"/></svg></div>
+      <div class="logo-name">Tech Startup</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=startup" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><path d="M16 48 L16 20 L32 8 L48 20 L48 48 Z" fill="none" stroke="#c9a84c" stroke-width="1.5"/><rect x="24" y="36" width="16" height="12" fill="none" stroke="rgba(201,168,76,0.5)" stroke-width="1"/><text x="32" y="28" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="7" letter-spacing="1">HOME</text></svg></div>
+      <div class="logo-name">Real Estate</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=realestate" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><path d="M32 10 Q42 18 44 32 Q42 46 32 54 Q22 46 20 32 Q22 18 32 10Z" fill="none" stroke="#c9a84c" stroke-width="1.5"/><text x="32" y="36" text-anchor="middle" fill="#c9a84c" font-size="9" font-family="Georgia" font-style="italic">Vitae</text></svg></div>
+      <div class="logo-name">Health &amp; Wellness</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=health" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+    <div class="logo-item"><div class="logo-inner">
+      <div class="logo-icon-wrap"><svg viewBox="0 0 64 64" width="64" height="64"><rect x="10" y="10" width="44" height="44" fill="none" stroke="#c9a84c" stroke-width="1.5"/><rect x="18" y="18" width="28" height="28" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="1"/><text x="32" y="36" text-anchor="middle" fill="#c9a84c" font-size="10" font-family="Georgia" font-weight="bold">CF</text></svg></div>
+      <div class="logo-name">Coffee Shop</div></div>
+      <div class="logo-overlay"><a href="contact.html?logo=coffee" class="btn-gold-ghost btn-small">Order Similar</a></div>
+    </div>
+  </div>
+  <div class="logo-cta-wrap reveal">
+    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:1.5rem;">Every logo includes: Primary mark + variations + favicon + brand colour palette + guidelines document</p>
+    <a href="contact.html?service=branding" class="btn-primary">&#10022; Order Logo Package — From $299</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     5. SOCIAL MEDIA PACKS
+═══════════════════════════════════════ -->
+<section class="section-wrap alt" id="social">
+  <div class="section-header reveal">
+    <div class="section-header-text">
+      <span class="section-tag">Social Media</span>
+      <h2 class="section-title">Social Media Post<br/><em>Packs</em></h2>
+      <p class="section-body">Professional, on-brand social media content designed to stop the scroll — delivered as ready-to-post files for Facebook, Instagram, LinkedIn, and X.</p>
+    </div>
+  </div>
+  <!-- Preview posts -->
+  <div class="social-preview reveal">
+    <div class="social-post" style="background:linear-gradient(135deg,#111520,#1a1030);">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/><text x="24" y="29" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="18">&#128200;</text></svg></div>
+      <div class="social-post-inner"><div class="social-post-tag">Promo Post</div><div class="social-post-title">50% Off This Weekend Only</div></div>
+    </div>
+    <div class="social-post" style="background:linear-gradient(135deg,#0a1a10,#0e2218);">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="48" height="48" viewBox="0 0 48 48"><rect x="6" y="6" width="36" height="36" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1" transform="rotate(45 24 24)"/><text x="24" y="29" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="18">&#10022;</text></svg></div>
+      <div class="social-post-inner"><div class="social-post-tag">Brand Story</div><div class="social-post-title">Our Story, Your Trust</div></div>
+    </div>
+    <div class="social-post" style="background:linear-gradient(135deg,#1a0808,#2a1010);">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="48" height="48" viewBox="0 0 48 48"><polygon points="24,4 44,44 4,44" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/><text x="24" y="33" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="16">&#127881;</text></svg></div>
+      <div class="social-post-inner"><div class="social-post-tag">Product Launch</div><div class="social-post-title">Introducing Our New Collection</div></div>
+    </div>
+    <div class="social-post" style="background:linear-gradient(135deg,#0a0e1e,#101428);">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="48" height="48" viewBox="0 0 48 48"><circle cx="24" cy="20" r="12" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/><line x1="24" y1="32" x2="24" y2="44" stroke="rgba(201,168,76,0.15)" stroke-width="1"/><text x="24" y="25" text-anchor="middle" fill="rgba(201,168,76,0.5)" font-size="14">&#128172;</text></svg></div>
+      <div class="social-post-inner"><div class="social-post-tag">Testimonial</div><div class="social-post-title">"The Best Decision We Made"</div></div>
+    </div>
+    <div class="social-post" style="background:linear-gradient(135deg,#0e180a,#162210);">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="48" height="48" viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="18" ry="10" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/><ellipse cx="24" cy="24" rx="10" ry="18" fill="none" stroke="rgba(201,168,76,0.15)" stroke-width="1"/></svg></div>
+      <div class="social-post-inner"><div class="social-post-tag">Awareness</div><div class="social-post-title">Did You Know?</div></div>
+    </div>
+    <div class="social-post" style="background:linear-gradient(135deg,#180e0a,#2a1808);">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><svg width="48" height="48" viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/><rect x="16" y="16" width="16" height="16" fill="none" stroke="rgba(201,168,76,0.15)" stroke-width="1"/></svg></div>
+      <div class="social-post-inner"><div class="social-post-tag">Announcement</div><div class="social-post-title">We're Expanding to Europe</div></div>
+    </div>
+  </div>
+  <!-- Pricing packs -->
+  <div class="packs-grid reveal">
+    <div class="pack-card">
+      <span class="pack-tier">Starter</span>
+      <div class="pack-name">Starter Pack</div>
+      <div class="pack-price">$149 <small>one-time</small></div>
+      <div class="pack-desc">Perfect for new businesses building their first social media presence. Clean, professional, on-brand.</div>
+      <ul class="pack-list">
+        <li class="included">10 custom designed posts</li>
+        <li class="included">2 platforms (FB + IG)</li>
+        <li class="included">3 content categories</li>
+        <li class="included">Editable source files</li>
+        <li>Story templates</li>
+        <li>Caption copy included</li>
+        <li>Monthly refresh option</li>
+      </ul>
+      <div class="pack-cta">
+        <a href="contact.html?pack=starter-social" class="btn-ghost" style="justify-content:center;">Order Starter Pack</a>
+      </div>
+      <div class="pack-line"></div>
+    </div>
+    <div class="pack-card featured">
+      <div class="pack-popular"><span class="badge badge-gold">Most Popular</span></div>
+      <span class="pack-tier">Business</span>
+      <div class="pack-name">Business Pack</div>
+      <div class="pack-price">$299 <small>one-time</small></div>
+      <div class="pack-desc">The complete package for growing businesses that need consistent, high-quality content every month.</div>
+      <ul class="pack-list">
+        <li class="included">25 custom designed posts</li>
+        <li class="included">4 platforms (FB, IG, LI, X)</li>
+        <li class="included">6 content categories</li>
+        <li class="included">Editable source files</li>
+        <li class="included">Story &amp; Reel templates</li>
+        <li class="included">Caption copy included</li>
+        <li>Monthly refresh option</li>
+      </ul>
+      <div class="pack-cta">
+        <a href="contact.html?pack=business-social" class="btn-primary" style="justify-content:center;">Order Business Pack</a>
+      </div>
+      <div class="pack-line"></div>
+    </div>
+    <div class="pack-card">
+      <span class="pack-tier">Premium</span>
+      <div class="pack-name">Premium Pack</div>
+      <div class="pack-price">$549 <small>/ month</small></div>
+      <div class="pack-desc">Full-service monthly social media management — designed, written, scheduled, and delivered every month.</div>
+      <ul class="pack-list">
+        <li class="included">50 custom designed posts</li>
+        <li class="included">All major platforms</li>
+        <li class="included">Unlimited categories</li>
+        <li class="included">Editable source files</li>
+        <li class="included">Story, Reel &amp; video templates</li>
+        <li class="included">Full caption copy suite</li>
+        <li class="included">Monthly content refresh</li>
+      </ul>
+      <div class="pack-cta">
+        <a href="contact.html?pack=premium-social" class="btn-gold-ghost" style="justify-content:center;">Order Premium Pack</a>
+      </div>
+      <div class="pack-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     6. FINAL CTA
+═══════════════════════════════════════ -->
+<section id="final-cta">
+  <div class="final-cta-content reveal">
+    <span class="section-tag" style="display:block;margin-bottom:1.2rem;">Let's Get Started</span>
+    <div class="cta-deco-line"></div>
+    <h2 class="section-title" style="font-size:clamp(2.2rem,5vw,4rem);max-width:700px;margin:0 auto 1.2rem;">Ready to Start<br/><em>Your Project?</em></h2>
+    <p class="section-body" style="max-width:500px;margin:0 auto 0.5rem;text-align:center;">Whether you know exactly what you need or want guidance choosing the right package — we're here. No pressure, no jargon. Just honest advice and fast execution.</p>
+    <div class="final-cta-actions">
+      <a href="contact.html?action=deposit" class="btn-primary">&#128179; Pay Deposit &amp; Start</a>
+      <a href="contact.html?action=consultation" class="btn-ghost">&#128197; Book Free Consultation</a>
+      <a href="https://wa.me/94741534557" target="_blank" rel="noopener" class="btn-whatsapp">&#128172; WhatsApp Chat</a>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><span class="trust-icon">&#9733;</span> 5-Star Rated Studio</div>
+      <div class="trust-item"><span class="trust-icon">&#9632;</span> 48-Hour Proposal</div>
+      <div class="trust-item"><span class="trust-icon">&#9670;</span> 100% Custom Work</div>
+      <div class="trust-item"><span class="trust-icon">&#128100;</span> Serving USA &amp; Europe</div>
+      <div class="trust-item"><span class="trust-icon">&#9989;</span> Post-Launch Support</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Geo<span>Brif</span> Digital</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="why-us.html">Why Us</a></li>
+    <li><a href="templates.html">Templates</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="footer-copy">&#169; 2025 GeoBrif Digital. All rights reserved.</div>
+</footer>
+
+<script>
+  /* Nav */
+  const btn = document.getElementById('hamburger'), menu = document.getElementById('mobileMenu');
+  function closeMenu() { btn.classList.remove('open'); menu.classList.remove('open'); document.body.style.overflow = ''; }
+  btn.addEventListener('click', () => { const open = menu.classList.toggle('open'); btn.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : ''; });
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => { nav.style.boxShadow = window.scrollY > 50 ? '0 4px 40px rgba(0,0,0,0.55)' : 'none'; }, { passive: true });
+
+  /* Scroll reveal */
+  const revEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); io.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  revEls.forEach(el => io.observe(el));
+
+  /* Filter bar scroll helper */
+  function scrollTo(id) { document.querySelector(id).scrollIntoView({ behavior: 'smooth' }); }
+
+  /* Filter bar active state on scroll */
+  const sections = ['#website-templates','#chatbots','#logos','#social','#final-cta'];
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  window.addEventListener('scroll', () => {
+    let active = 0;
+    sections.forEach((sel, i) => {
+      const el = document.querySelector(sel);
+      if (el && window.scrollY >= el.offsetTop - 180) active = i;
+    });
+    filterBtns.forEach((b, i) => b.classList.toggle('active', i === active));
+  }, { passive: true });
+</script>
+
+
+<style>
+  /* ── WIDGET BASE ── */
+  #gb-chat-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  #gb-chat-wrap {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    z-index: 9999;
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  }
+
+  /* ── TOGGLE BUTTON ── */
+  #gb-toggle {
+    width: 58px; height: 58px;
+    background: #c9a84c;
+    border: none; border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+    transition: transform 0.3s, background 0.25s;
+    position: relative;
+    margin-left: auto;
+  }
+  #gb-toggle:hover { background: #e8c876; transform: scale(1.08); }
+  #gb-toggle svg { width: 26px; height: 26px; fill: #0a0b0f; transition: opacity 0.2s; }
+  #gb-toggle .ico-close { display: none; }
+
+  #gb-toggle.open .ico-chat  { display: none; }
+  #gb-toggle.open .ico-close { display: block; }
+
+  /* Unread badge */
+  #gb-badge {
+    position: absolute; top: -4px; right: -4px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #e05c5c; color: #fff;
+    font-size: 0.65rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #0a0b0f;
+    animation: badgePop 0.4s ease;
+  }
+  @keyframes badgePop {
+    from { transform: scale(0); }
+    to   { transform: scale(1); }
+  }
+
+  /* ── CHAT WINDOW ── */
+  #gb-window {
+    position: absolute;
+    bottom: 72px; right: 0;
+    width: 360px;
+    background: #0d1117;
+    border: 1px solid #1e2538;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.7);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    transform-origin: bottom right;
+    animation: windowIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  #gb-window.open { display: flex; }
+
+  @keyframes windowIn {
+    from { opacity: 0; transform: scale(0.85) translateY(12px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* Header */
+  #gb-header {
+    background: linear-gradient(135deg, #111520 0%, #0d1117 100%);
+    border-bottom: 1px solid #1e2538;
+    padding: 1.1rem 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .gb-avatar {
+    width: 38px; height: 38px; flex-shrink: 0;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: #c9a84c; font-size: 1rem;
+    background: rgba(201,168,76,0.06);
+  }
+  .gb-header-info {}
+  .gb-bot-name {
+    font-size: 0.88rem; font-weight: 600;
+    color: #f4f2ed; letter-spacing: 0.03em;
+  }
+  .gb-status {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; color: #8b8ea8; margin-top: 0.1rem;
+  }
+  .gb-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #4caf82;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+  .gb-close-btn {
+    margin-left: auto; background: none; border: none;
+    color: #8b8ea8; cursor: pointer; font-size: 1.1rem;
+    padding: 0.2rem; transition: color 0.2s;
+  }
+  .gb-close-btn:hover { color: #c9a84c; }
+
+  /* Messages area */
+  #gb-messages {
+    flex: 1; overflow-y: auto;
+    padding: 1rem; display: flex;
+    flex-direction: column; gap: 0.7rem;
+    max-height: 320px; min-height: 220px;
+    scrollbar-width: thin;
+    scrollbar-color: #1e2538 transparent;
+  }
+  #gb-messages::-webkit-scrollbar { width: 3px; }
+  #gb-messages::-webkit-scrollbar-thumb { background: #1e2538; }
+
+  /* Message bubbles */
+  .gb-msg {
+    display: flex; flex-direction: column;
+    max-width: 85%;
+    animation: msgIn 0.25s ease;
+  }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .gb-msg.bot  { align-self: flex-start; }
+  .gb-msg.user { align-self: flex-end; }
+
+  .gb-bubble {
+    padding: 0.7rem 0.95rem;
+    font-size: 0.83rem; line-height: 1.55;
+    border-radius: 0;
+  }
+  .gb-msg.bot  .gb-bubble {
+    background: #111520;
+    border: 1px solid #1e2538;
+    color: #f4f2ed;
+    border-left: 2px solid #c9a84c;
+  }
+  .gb-msg.user .gb-bubble {
+    background: #c9a84c;
+    color: #0a0b0f;
+    font-weight: 500;
+  }
+  .gb-time {
+    font-size: 0.62rem; color: #8b8ea8;
+    margin-top: 0.25rem;
+  }
+  .gb-msg.user .gb-time { text-align: right; }
+
+  /* Typing indicator */
+  .gb-typing .gb-bubble {
+    padding: 0.7rem 1rem;
+    display: flex; gap: 4px; align-items: center;
+  }
+  .gb-typing .gb-bubble span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #c9a84c; display: inline-block;
+    animation: typingDot 1.2s infinite;
+  }
+  .gb-typing .gb-bubble span:nth-child(2) { animation-delay: 0.2s; }
+  .gb-typing .gb-bubble span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingDot {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+    40%           { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Quick reply buttons */
+  #gb-quick-replies {
+    display: flex; flex-wrap: wrap; gap: 0.45rem;
+    padding: 0.6rem 1rem 0.2rem;
+  }
+  .gb-qr {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: #c9a84c; font-size: 0.75rem;
+    padding: 0.4rem 0.85rem; cursor: pointer;
+    font-family: inherit; letter-spacing: 0.04em;
+    transition: background 0.2s, color 0.2s;
+    text-align: left;
+  }
+  .gb-qr:hover { background: #c9a84c; color: #0a0b0f; }
+
+  /* Input row */
+  #gb-input-row {
+    display: flex; gap: 0;
+    border-top: 1px solid #1e2538;
+    padding: 0.7rem 1rem;
+    background: #0a0b0f;
+  }
+  #gb-input {
+    flex: 1; background: #111520;
+    border: 1px solid #1e2538; border-right: none;
+    color: #f4f2ed; font-family: inherit;
+    font-size: 0.82rem; padding: 0.6rem 0.9rem;
+    outline: none; transition: border-color 0.25s;
+  }
+  #gb-input::placeholder { color: rgba(139,142,168,0.5); }
+  #gb-input:focus { border-color: #c9a84c; }
+
+  #gb-send {
+    background: #c9a84c; border: none;
+    padding: 0 1rem; cursor: pointer;
+    transition: background 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #gb-send:hover { background: #e8c876; }
+  #gb-send svg { width: 16px; height: 16px; fill: #0a0b0f; }
+
+  /* Powered by */
+  #gb-footer {
+    text-align: center; padding: 0.45rem;
+    font-size: 0.62rem; color: rgba(139,142,168,0.5);
+    border-top: 1px solid #1e2538; background: #0a0b0f;
+    letter-spacing: 0.06em;
+  }
+  #gb-footer span { color: #c9a84c; }
+
+  /* Input form for lead capture */
+  .gb-form-field {
+    display: flex; flex-direction: column; gap: 0.35rem;
+    padding: 0.5rem 1rem;
+  }
+  .gb-form-label {
+    font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #8b8ea8;
+  }
+  .gb-form-input {
+    background: #111520; border: 1px solid #1e2538;
+    color: #f4f2ed; font-family: inherit;
+    font-size: 0.82rem; padding: 0.6rem 0.9rem;
+    outline: none; transition: border-color 0.25s;
+    width: 100%;
+  }
+  .gb-form-input:focus { border-color: #c9a84c; }
+  .gb-form-input::placeholder { color: rgba(139,142,168,0.4); }
+
+  /* Mobile responsive */
+  @media (max-width: 420px) {
+    #gb-chat-wrap { bottom: 16px; right: 16px; }
+    #gb-window { width: calc(100vw - 32px); right: 0; }
+  }
+</style>
+
+<!-- WIDGET HTML -->
+<div id="gb-chat-wrap">
+  <!-- Chat Window -->
+  <div id="gb-window">
+    <!-- Header -->
+    <div id="gb-header">
+      <div class="gb-avatar">◆</div>
+      <div class="gb-header-info">
+        <div class="gb-bot-name">GeoBrif Assistant</div>
+        <div class="gb-status"><span class="gb-dot"></span> Online — typically replies instantly</div>
+      </div>
+      <button class="gb-close-btn" id="gb-close-btn" aria-label="Close chat">✕</button>
+    </div>
+
+    <!-- Messages -->
+    <div id="gb-messages"></div>
+
+    <!-- Quick Replies -->
+    <div id="gb-quick-replies"></div>
+
+    <!-- Lead capture fields (hidden by default) -->
+    <div id="gb-form-area"></div>
+
+    <!-- Input -->
+    <div id="gb-input-row">
+      <input id="gb-input" type="text" placeholder="Type a message…" autocomplete="off"/>
+      <button id="gb-send" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </div>
+
+    <div id="gb-footer">Powered by <span>GeoBrif Digital</span></div>
+  </div>
+
+  <!-- Toggle Button -->
+  <button id="gb-toggle" aria-label="Open chat">
+    <div id="gb-badge">1</div>
+    <!-- Chat icon -->
+    <svg class="ico-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+    <!-- Close icon -->
+    <svg class="ico-close" viewBox="0 0 24 24"><path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/></svg>
+  </button>
+</div>
+
+<script>
+(function() {
+
+  /* ── STATE ── */
+  const state = {
+    open: false,
+    step: 'welcome',
+    lead: { name: '', email: '', service: '' },
+    awaitingInput: null   // 'name' | 'email' | null
+  };
+
+  /* ── DOM ── */
+  const wrap     = document.getElementById('gb-chat-wrap');
+  const win      = document.getElementById('gb-window');
+  const toggle   = document.getElementById('gb-toggle');
+  const closeBtn = document.getElementById('gb-close-btn');
+  const msgs     = document.getElementById('gb-messages');
+  const qrArea   = document.getElementById('gb-quick-replies');
+  const formArea = document.getElementById('gb-form-area');
+  const input    = document.getElementById('gb-input');
+  const sendBtn  = document.getElementById('gb-send');
+  const badge    = document.getElementById('gb-badge');
+
+  /* ── HELPERS ── */
+  function now() {
+    const d = new Date();
+    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+  }
+
+  function addMsg(text, who, delay = 0) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const div = document.createElement('div');
+        div.className = `gb-msg ${who}`;
+        div.innerHTML = `<div class="gb-bubble">${text}</div><div class="gb-time">${now()}</div>`;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function showTyping(duration = 900) {
+    return new Promise(resolve => {
+      const div = document.createElement('div');
+      div.className = 'gb-msg bot gb-typing';
+      div.id = 'gb-typing-indicator';
+      div.innerHTML = `<div class="gb-bubble"><span></span><span></span><span></span></div>`;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+      setTimeout(() => {
+        const el = document.getElementById('gb-typing-indicator');
+        if (el) el.remove();
+        resolve();
+      }, duration);
+    });
+  }
+
+  function setQR(buttons) {
+    qrArea.innerHTML = '';
+    formArea.innerHTML = '';
+    buttons.forEach(b => {
+      const btn = document.createElement('button');
+      btn.className = 'gb-qr';
+      btn.textContent = b.label;
+      btn.onclick = () => {
+        addMsg(b.label, 'user');
+        qrArea.innerHTML = '';
+        b.action();
+      };
+      qrArea.appendChild(btn);
+    });
+  }
+
+  function clearQR() { qrArea.innerHTML = ''; formArea.innerHTML = ''; }
+
+  /* ── FLOWS ── */
+
+  async function flowWelcome() {
+    state.step = 'welcome';
+    await showTyping(700);
+    await addMsg('👋 Hi there! I\'m the <strong>GeoBrif Assistant</strong>.<br/>How can I help you today?', 'bot');
+    setQR([
+      { label: '💼 Our Services',        action: flowServices },
+      { label: '❓ Common Questions',    action: flowFAQ },
+      { label: '📞 Book a Discovery Call', action: flowBookCall },
+      { label: '✉ Get a Free Quote',    action: flowLeadStart },
+    ]);
+  }
+
+  /* ─ SERVICES ─ */
+  async function flowServices() {
+    state.step = 'services';
+    await showTyping(600);
+    await addMsg('We offer <strong>5 core services</strong>. Which would you like to know more about?', 'bot');
+    setQR([
+      { label: '🌐 Website Development', action: flowWebsite },
+      { label: '🤖 AI Chatbot Solutions', action: flowAI },
+      { label: '⚙️ Business Automation',  action: flowAutomation },
+      { label: '📧 Business Email Setup', action: flowEmail },
+      { label: '🎨 Branding & Marketing', action: flowBranding },
+      { label: '← Back',                  action: flowWelcome },
+    ]);
+  }
+
+  async function flowWebsite() {
+    await showTyping(800);
+    await addMsg('🌐 <strong>Custom Website Development</strong><br/><br/>We build high-performance websites from scratch — no templates, ever. Every site is mobile-first, blazing fast, and engineered to convert visitors into customers.<br/><br/>Typical turnaround: <strong>2–4 weeks.</strong>', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  async function flowAI() {
+    await showTyping(800);
+    await addMsg('🤖 <strong>AI Chatbot Solutions</strong><br/><br/>We deploy intelligent chatbots trained on your business — handling leads, FAQs, bookings, and customer support <strong>24/7, automatically.</strong><br/><br/>Your best team member never takes a day off.', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  async function flowAutomation() {
+    await showTyping(800);
+    await addMsg('⚙️ <strong>Business Automation Systems</strong><br/><br/>We eliminate repetitive workflows by building smart automation pipelines that connect your tools and run without intervention.<br/><br/>Clients save an average of <strong>10+ hours per week</strong> after automation.', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  async function flowEmail() {
+    await showTyping(700);
+    await addMsg('📧 <strong>Professional Business Email</strong><br/><br/>We set up branded email infrastructure (e.g. you@yourbusiness.com) with enterprise-grade security, deliverability, and full team management.<br/><br/>Usually completed in <strong>2–3 business days.</strong>', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  async function flowBranding() {
+    await showTyping(800);
+    await addMsg('🎨 <strong>Digital Branding & Marketing Assets</strong><br/><br/>Logos, visual systems, pitch decks, social media assets, and full brand guidelines — crafted to communicate authority and trust at first glance.', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  /* ─ FAQ ─ */
+  async function flowFAQ() {
+    state.step = 'faq';
+    await showTyping(600);
+    await addMsg('Here are the most common questions. Pick one:', 'bot');
+    setQR([
+      { label: '⏱ How long do projects take?', action: faqTimeline },
+      { label: '💰 How does pricing work?',     action: faqPricing },
+      { label: '🌍 Do you work globally?',       action: faqGlobal },
+      { label: '🔧 What tech do you use?',       action: faqTech },
+      { label: '🤝 What happens after launch?',  action: faqSupport },
+      { label: '← Back',                         action: flowWelcome },
+    ]);
+  }
+
+  async function faqTimeline() {
+    await showTyping(700);
+    await addMsg('⏱ <strong>Project Timelines</strong><br/><br/>• Websites: <strong>2–4 weeks</strong><br/>• AI Chatbots: <strong>1–3 weeks</strong><br/>• Automation: <strong>1–2 weeks</strong><br/>• Email Setup: <strong>2–3 days</strong><br/>• Branding: <strong>2–3 weeks</strong><br/><br/>We provide a confirmed timeline before work begins.', 'bot');
+    setQR([
+      { label: '📞 Book a Call',   action: flowBookCall },
+      { label: '← More FAQs',     action: flowFAQ },
+      { label: '🏠 Main Menu',     action: flowWelcome },
+    ]);
+  }
+
+  async function faqPricing() {
+    await showTyping(700);
+    await addMsg('💰 <strong>How Pricing Works</strong><br/><br/>Every project is scoped and priced individually — we don\'t believe in one-size-fits-all packages.<br/><br/>We use a <strong>split-payment model</strong>: a deposit to begin, balance on delivery. A detailed proposal is always provided before any commitment.', 'bot');
+    setQR([
+      { label: '✉ Get a Free Quote', action: flowLeadStart },
+      { label: '← More FAQs',        action: flowFAQ },
+      { label: '🏠 Main Menu',        action: flowWelcome },
+    ]);
+  }
+
+  async function faqGlobal() {
+    await showTyping(600);
+    await addMsg('🌍 <strong>Yes — we work globally.</strong><br/><br/>GeoBrif Digital is fully remote and works with clients across multiple countries and time zones. Our entire workflow runs seamlessly online — no location barriers.', 'bot');
+    setQR([
+      { label: '📞 Book a Call',   action: flowBookCall },
+      { label: '← More FAQs',     action: flowFAQ },
+      { label: '🏠 Main Menu',     action: flowWelcome },
+    ]);
+  }
+
+  async function faqTech() {
+    await showTyping(700);
+    await addMsg('🔧 <strong>Technology We Use</strong><br/><br/>We select the best stack for each project — HTML/CSS/JS, React, Next.js, WordPress, Webflow, Make, Zapier, n8n, and more.<br/><br/>We never impose a stack — we recommend what\'s right for <em>you</em>.', 'bot');
+    setQR([
+      { label: '📞 Book a Call',   action: flowBookCall },
+      { label: '← More FAQs',     action: flowFAQ },
+      { label: '🏠 Main Menu',     action: flowWelcome },
+    ]);
+  }
+
+  async function faqSupport() {
+    await showTyping(700);
+    await addMsg('🤝 <strong>Post-Launch Support</strong><br/><br/>All projects include a post-launch support window. We also offer ongoing monthly retainer arrangements for maintenance, updates, and continued growth.<br/><br/>We don\'t disappear after delivery.', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',   action: flowLeadStart },
+      { label: '← More FAQs',     action: flowFAQ },
+      { label: '🏠 Main Menu',     action: flowWelcome },
+    ]);
+  }
+
+  /* ─ BOOK CALL ─ */
+  async function flowBookCall() {
+    state.step = 'book';
+    await showTyping(700);
+    await addMsg('📞 <strong>Book a Discovery Call</strong><br/><br/>We\'d love to connect. Our discovery calls are focused 30-minute conversations — no sales pitch, just a straight conversation about your goals.', 'bot');
+    await showTyping(500);
+    await addMsg('You can reach us directly to schedule:<br/><br/>📧 <strong>info@geobrif.com</strong><br/>📱 <strong>+94 74 153 4557</strong><br/>💬 WhatsApp the same number<br/><br/>Or leave your details and we\'ll reach out to you 👇', 'bot');
+    setQR([
+      { label: '✉ Leave my details', action: flowLeadStart },
+      { label: '🏠 Main Menu',        action: flowWelcome },
+    ]);
+  }
+
+  /* ─ LEAD CAPTURE ─ */
+  async function flowLeadStart() {
+    state.step = 'lead';
+    clearQR();
+    await showTyping(600);
+    await addMsg('Great! Let\'s get some details so we can put together a tailored proposal for you. 📋', 'bot');
+    await showTyping(500);
+    await addMsg('First — what\'s your <strong>full name</strong>?', 'bot');
+    state.awaitingInput = 'name';
+    input.placeholder = 'Your full name…';
+    input.focus();
+  }
+
+  async function flowLeadEmail() {
+    await showTyping(500);
+    await addMsg(`Nice to meet you, <strong>${state.lead.name}</strong>! 👋<br/><br/>What\'s the best <strong>email address</strong> to reach you?`, 'bot');
+    state.awaitingInput = 'email';
+    input.placeholder = 'your@email.com';
+  }
+
+  async function flowLeadService() {
+    state.awaitingInput = null;
+    await showTyping(500);
+    await addMsg('Almost done! Which <strong>service</strong> are you most interested in?', 'bot');
+    setQR([
+      { label: '🌐 Website Development', action: () => finishLead('Website Development') },
+      { label: '🤖 AI Chatbot',           action: () => finishLead('AI Chatbot Solutions') },
+      { label: '⚙️ Automation',           action: () => finishLead('Business Automation') },
+      { label: '📧 Business Email',        action: () => finishLead('Business Email Setup') },
+      { label: '🎨 Branding',              action: () => finishLead('Branding & Marketing') },
+      { label: '📦 Multiple / Full Package', action: () => finishLead('Multiple Services') },
+    ]);
+  }
+
+  async function finishLead(service) {
+    state.lead.service = service;
+    clearQR();
+    await showTyping(900);
+    await addMsg(`✅ <strong>All received!</strong><br/><br/>Here\'s what we\'ve captured:<br/>👤 <strong>${state.lead.name}</strong><br/>📧 <strong>${state.lead.email}</strong><br/>🎯 <strong>${state.lead.service}</strong><br/><br/>Our team will be in touch within <strong>24 hours</strong> with a tailored proposal. We\'re looking forward to working with you! 🚀`, 'bot');
+    await showTyping(600);
+    await addMsg('In the meantime, feel free to explore our <a href="services.html" style="color:#c9a84c">Services</a> or learn <a href="about.html" style="color:#c9a84c">About Us</a>.', 'bot');
+    state.step = 'done';
+    state.awaitingInput = null;
+    input.placeholder = 'Type a message…';
+    setQR([
+      { label: '🏠 Main Menu', action: flowWelcome },
+    ]);
+  }
+
+  /* ── INPUT HANDLING ── */
+  function handleUserInput() {
+    const val = input.value.trim();
+    if (!val) return;
+    addMsg(val, 'user');
+    input.value = '';
+
+    if (state.awaitingInput === 'name') {
+      state.lead.name = val;
+      flowLeadEmail();
+    } else if (state.awaitingInput === 'email') {
+      // Basic email check
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        showTyping(400).then(() => {
+          addMsg('Hmm, that doesn\'t look like a valid email. Could you double-check it? 🙏', 'bot');
+        });
+        return;
+      }
+      state.lead.email = val;
+      flowLeadService();
+    } else {
+      // Free-text fallback
+      const lower = val.toLowerCase();
+      if (lower.includes('service') || lower.includes('what do you') || lower.includes('offer')) {
+        showTyping(600).then(() => flowServices());
+      } else if (lower.includes('price') || lower.includes('cost') || lower.includes('how much')) {
+        showTyping(600).then(() => faqPricing());
+      } else if (lower.includes('call') || lower.includes('book') || lower.includes('schedule')) {
+        showTyping(600).then(() => flowBookCall());
+      } else if (lower.includes('website') || lower.includes('web')) {
+        showTyping(600).then(() => flowWebsite());
+      } else if (lower.includes('chatbot') || lower.includes('ai') || lower.includes('bot')) {
+        showTyping(600).then(() => flowAI());
+      } else if (lower.includes('automat')) {
+        showTyping(600).then(() => flowAutomation());
+      } else if (lower.includes('email')) {
+        showTyping(600).then(() => flowEmail());
+      } else if (lower.includes('brand') || lower.includes('logo') || lower.includes('design')) {
+        showTyping(600).then(() => flowBranding());
+      } else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
+        showTyping(500).then(() => addMsg('Hello! 👋 How can I help you today?', 'bot')).then(() => {
+          setQR([
+            { label: '💼 Services',         action: flowServices },
+            { label: '❓ FAQs',             action: flowFAQ },
+            { label: '📞 Book a Call',       action: flowBookCall },
+            { label: '✉ Get a Quote',        action: flowLeadStart },
+          ]);
+        });
+      } else {
+        showTyping(700).then(() => {
+          addMsg('I\'m not sure I caught that — but I\'m happy to help! Here\'s what I can do:', 'bot');
+          setQR([
+            { label: '💼 Our Services',       action: flowServices },
+            { label: '❓ Common Questions',   action: flowFAQ },
+            { label: '📞 Book a Call',         action: flowBookCall },
+            { label: '✉ Get a Quote',          action: flowLeadStart },
+          ]);
+        });
+      }
+    }
+  }
+
+  /* ── OPEN / CLOSE ── */
+  function openChat() {
+    state.open = true;
+    win.classList.add('open');
+    toggle.classList.add('open');
+    badge.style.display = 'none';
+    if (msgs.children.length === 0) flowWelcome();
+    setTimeout(() => input.focus(), 300);
+  }
+
+  function closeChat() {
+    state.open = false;
+    win.classList.remove('open');
+    toggle.classList.remove('open');
+  }
+
+  toggle.addEventListener('click', () => state.open ? closeChat() : openChat());
+  closeBtn.addEventListener('click', closeChat);
+  sendBtn.addEventListener('click', handleUserInput);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserInput(); });
+
+  /* Auto-open after 4 seconds on first load */
+  setTimeout(() => {
+    if (!state.open) openChat();
+  }, 4000);
+
+})();
+</script>
+
+
+</body>
+</html>

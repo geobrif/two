@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GeoBrif Chatbot — Embed Preview</title>
+  <style>
+    /* Preview page background only */
+    body {
+      margin: 0; font-family: sans-serif;
+      background: #0a0b0f; color: #f4f2ed;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem;
+    }
+    .preview-note {
+      font-size: 0.85rem; color: #8b8ea8; letter-spacing: 0.1em;
+      text-transform: uppercase; text-align: center; padding: 2rem;
+    }
+    .preview-note span { color: #c9a84c; }
+  </style>
+</head>
+<body>
+  <p class="preview-note">
+    <span>GeoBrif Digital</span> — Chatbot Widget Preview<br/>
+    The chat bubble appears in the bottom-right corner.<br/>
+    Copy the &lt;!-- GEOBRIF CHATBOT WIDGET --&gt; block into any page.
+  </p>
+
+<!-- ============================================================
+     GEOBRIF CHATBOT WIDGET
+     Paste everything between these comments into ANY page,
+     just before the closing </body> tag.
+     No external dependencies required.
+============================================================ -->
+<style>
+  /* ── WIDGET BASE ── */
+  #gb-chat-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  #gb-chat-wrap {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    z-index: 9999;
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  }
+
+  /* ── TOGGLE BUTTON ── */
+  #gb-toggle {
+    width: 58px; height: 58px;
+    background: #c9a84c;
+    border: none; border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+    transition: transform 0.3s, background 0.25s;
+    position: relative;
+    margin-left: auto;
+  }
+  #gb-toggle:hover { background: #e8c876; transform: scale(1.08); }
+  #gb-toggle svg { width: 26px; height: 26px; fill: #0a0b0f; transition: opacity 0.2s; }
+  #gb-toggle .ico-close { display: none; }
+
+  #gb-toggle.open .ico-chat  { display: none; }
+  #gb-toggle.open .ico-close { display: block; }
+
+  /* Unread badge */
+  #gb-badge {
+    position: absolute; top: -4px; right: -4px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #e05c5c; color: #fff;
+    font-size: 0.65rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #0a0b0f;
+    animation: badgePop 0.4s ease;
+  }
+  @keyframes badgePop {
+    from { transform: scale(0); }
+    to   { transform: scale(1); }
+  }
+
+  /* ── CHAT WINDOW ── */
+  #gb-window {
+    position: absolute;
+    bottom: 72px; right: 0;
+    width: 360px;
+    background: #0d1117;
+    border: 1px solid #1e2538;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.7);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    transform-origin: bottom right;
+    animation: windowIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  #gb-window.open { display: flex; }
+
+  @keyframes windowIn {
+    from { opacity: 0; transform: scale(0.85) translateY(12px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  /* Header */
+  #gb-header {
+    background: linear-gradient(135deg, #111520 0%, #0d1117 100%);
+    border-bottom: 1px solid #1e2538;
+    padding: 1.1rem 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .gb-avatar {
+    width: 38px; height: 38px; flex-shrink: 0;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: #c9a84c; font-size: 1rem;
+    background: rgba(201,168,76,0.06);
+  }
+  .gb-header-info {}
+  .gb-bot-name {
+    font-size: 0.88rem; font-weight: 600;
+    color: #f4f2ed; letter-spacing: 0.03em;
+  }
+  .gb-status {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; color: #8b8ea8; margin-top: 0.1rem;
+  }
+  .gb-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #4caf82;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+  .gb-close-btn {
+    margin-left: auto; background: none; border: none;
+    color: #8b8ea8; cursor: pointer; font-size: 1.1rem;
+    padding: 0.2rem; transition: color 0.2s;
+  }
+  .gb-close-btn:hover { color: #c9a84c; }
+
+  /* Messages area */
+  #gb-messages {
+    flex: 1; overflow-y: auto;
+    padding: 1rem; display: flex;
+    flex-direction: column; gap: 0.7rem;
+    max-height: 320px; min-height: 220px;
+    scrollbar-width: thin;
+    scrollbar-color: #1e2538 transparent;
+  }
+  #gb-messages::-webkit-scrollbar { width: 3px; }
+  #gb-messages::-webkit-scrollbar-thumb { background: #1e2538; }
+
+  /* Message bubbles */
+  .gb-msg {
+    display: flex; flex-direction: column;
+    max-width: 85%;
+    animation: msgIn 0.25s ease;
+  }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .gb-msg.bot  { align-self: flex-start; }
+  .gb-msg.user { align-self: flex-end; }
+
+  .gb-bubble {
+    padding: 0.7rem 0.95rem;
+    font-size: 0.83rem; line-height: 1.55;
+    border-radius: 0;
+  }
+  .gb-msg.bot  .gb-bubble {
+    background: #111520;
+    border: 1px solid #1e2538;
+    color: #f4f2ed;
+    border-left: 2px solid #c9a84c;
+  }
+  .gb-msg.user .gb-bubble {
+    background: #c9a84c;
+    color: #0a0b0f;
+    font-weight: 500;
+  }
+  .gb-time {
+    font-size: 0.62rem; color: #8b8ea8;
+    margin-top: 0.25rem;
+  }
+  .gb-msg.user .gb-time { text-align: right; }
+
+  /* Typing indicator */
+  .gb-typing .gb-bubble {
+    padding: 0.7rem 1rem;
+    display: flex; gap: 4px; align-items: center;
+  }
+  .gb-typing .gb-bubble span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #c9a84c; display: inline-block;
+    animation: typingDot 1.2s infinite;
+  }
+  .gb-typing .gb-bubble span:nth-child(2) { animation-delay: 0.2s; }
+  .gb-typing .gb-bubble span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingDot {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+    40%           { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Quick reply buttons */
+  #gb-quick-replies {
+    display: flex; flex-wrap: wrap; gap: 0.45rem;
+    padding: 0.6rem 1rem 0.2rem;
+  }
+  .gb-qr {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: #c9a84c; font-size: 0.75rem;
+    padding: 0.4rem 0.85rem; cursor: pointer;
+    font-family: inherit; letter-spacing: 0.04em;
+    transition: background 0.2s, color 0.2s;
+    text-align: left;
+  }
+  .gb-qr:hover { background: #c9a84c; color: #0a0b0f; }
+
+  /* Input row */
+  #gb-input-row {
+    display: flex; gap: 0;
+    border-top: 1px solid #1e2538;
+    padding: 0.7rem 1rem;
+    background: #0a0b0f;
+  }
+  #gb-input {
+    flex: 1; background: #111520;
+    border: 1px solid #1e2538; border-right: none;
+    color: #f4f2ed; font-family: inherit;
+    font-size: 0.82rem; padding: 0.6rem 0.9rem;
+    outline: none; transition: border-color 0.25s;
+  }
+  #gb-input::placeholder { color: rgba(139,142,168,0.5); }
+  #gb-input:focus { border-color: #c9a84c; }
+
+  #gb-send {
+    background: #c9a84c; border: none;
+    padding: 0 1rem; cursor: pointer;
+    transition: background 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #gb-send:hover { background: #e8c876; }
+  #gb-send svg { width: 16px; height: 16px; fill: #0a0b0f; }
+
+  /* Powered by */
+  #gb-footer {
+    text-align: center; padding: 0.45rem;
+    font-size: 0.62rem; color: rgba(139,142,168,0.5);
+    border-top: 1px solid #1e2538; background: #0a0b0f;
+    letter-spacing: 0.06em;
+  }
+  #gb-footer span { color: #c9a84c; }
+
+  /* Input form for lead capture */
+  .gb-form-field {
+    display: flex; flex-direction: column; gap: 0.35rem;
+    padding: 0.5rem 1rem;
+  }
+  .gb-form-label {
+    font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #8b8ea8;
+  }
+  .gb-form-input {
+    background: #111520; border: 1px solid #1e2538;
+    color: #f4f2ed; font-family: inherit;
+    font-size: 0.82rem; padding: 0.6rem 0.9rem;
+    outline: none; transition: border-color 0.25s;
+    width: 100%;
+  }
+  .gb-form-input:focus { border-color: #c9a84c; }
+  .gb-form-input::placeholder { color: rgba(139,142,168,0.4); }
+
+  /* Mobile responsive */
+  @media (max-width: 420px) {
+    #gb-chat-wrap { bottom: 16px; right: 16px; }
+    #gb-window { width: calc(100vw - 32px); right: 0; }
+  }
+</style>
+
+<!-- WIDGET HTML -->
+<div id="gb-chat-wrap">
+  <!-- Chat Window -->
+  <div id="gb-window">
+    <!-- Header -->
+    <div id="gb-header">
+      <div class="gb-avatar">◆</div>
+      <div class="gb-header-info">
+        <div class="gb-bot-name">GeoBrif Assistant</div>
+        <div class="gb-status"><span class="gb-dot"></span> Online — typically replies instantly</div>
+      </div>
+      <button class="gb-close-btn" id="gb-close-btn" aria-label="Close chat">✕</button>
+    </div>
+
+    <!-- Messages -->
+    <div id="gb-messages"></div>
+
+    <!-- Quick Replies -->
+    <div id="gb-quick-replies"></div>
+
+    <!-- Lead capture fields (hidden by default) -->
+    <div id="gb-form-area"></div>
+
+    <!-- Input -->
+    <div id="gb-input-row">
+      <input id="gb-input" type="text" placeholder="Type a message…" autocomplete="off"/>
+      <button id="gb-send" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+      </button>
+    </div>
+
+    <div id="gb-footer">Powered by <span>GeoBrif Digital</span></div>
+  </div>
+
+  <!-- Toggle Button -->
+  <button id="gb-toggle" aria-label="Open chat">
+    <div id="gb-badge">1</div>
+    <!-- Chat icon -->
+    <svg class="ico-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+    <!-- Close icon -->
+    <svg class="ico-close" viewBox="0 0 24 24"><path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/></svg>
+  </button>
+</div>
+
+<script>
+(function() {
+
+  /* ── STATE ── */
+  const state = {
+    open: false,
+    step: 'welcome',
+    lead: { name: '', email: '', service: '' },
+    awaitingInput: null   // 'name' | 'email' | null
+  };
+
+  /* ── DOM ── */
+  const wrap     = document.getElementById('gb-chat-wrap');
+  const win      = document.getElementById('gb-window');
+  const toggle   = document.getElementById('gb-toggle');
+  const closeBtn = document.getElementById('gb-close-btn');
+  const msgs     = document.getElementById('gb-messages');
+  const qrArea   = document.getElementById('gb-quick-replies');
+  const formArea = document.getElementById('gb-form-area');
+  const input    = document.getElementById('gb-input');
+  const sendBtn  = document.getElementById('gb-send');
+  const badge    = document.getElementById('gb-badge');
+
+  /* ── HELPERS ── */
+  function now() {
+    const d = new Date();
+    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+  }
+
+  function addMsg(text, who, delay = 0) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const div = document.createElement('div');
+        div.className = `gb-msg ${who}`;
+        div.innerHTML = `<div class="gb-bubble">${text}</div><div class="gb-time">${now()}</div>`;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+        resolve();
+      }, delay);
+    });
+  }
+
+  function showTyping(duration = 900) {
+    return new Promise(resolve => {
+      const div = document.createElement('div');
+      div.className = 'gb-msg bot gb-typing';
+      div.id = 'gb-typing-indicator';
+      div.innerHTML = `<div class="gb-bubble"><span></span><span></span><span></span></div>`;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+      setTimeout(() => {
+        const el = document.getElementById('gb-typing-indicator');
+        if (el) el.remove();
+        resolve();
+      }, duration);
+    });
+  }
+
+  function setQR(buttons) {
+    qrArea.innerHTML = '';
+    formArea.innerHTML = '';
+    buttons.forEach(b => {
+      const btn = document.createElement('button');
+      btn.className = 'gb-qr';
+      btn.textContent = b.label;
+      btn.onclick = () => {
+        addMsg(b.label, 'user');
+        qrArea.innerHTML = '';
+        b.action();
+      };
+      qrArea.appendChild(btn);
+    });
+  }
+
+  function clearQR() { qrArea.innerHTML = ''; formArea.innerHTML = ''; }
+
+  /* ── FLOWS ── */
+
+  async function flowWelcome() {
+    state.step = 'welcome';
+    await showTyping(700);
+    await addMsg('👋 Hi there! I\'m the <strong>GeoBrif Assistant</strong>.<br/>How can I help you today?', 'bot');
+    setQR([
+      { label: '💼 Our Services',        action: flowServices },
+      { label: '❓ Common Questions',    action: flowFAQ },
+      { label: '📞 Book a Discovery Call', action: flowBookCall },
+      { label: '✉ Get a Free Quote',    action: flowLeadStart },
+    ]);
+  }
+
+  /* ─ SERVICES ─ */
+  async function flowServices() {
+    state.step = 'services';
+    await showTyping(600);
+    await addMsg('We offer <strong>5 core services</strong>. Which would you like to know more about?', 'bot');
+    setQR([
+      { label: '🌐 Website Development', action: flowWebsite },
+      { label: '🤖 AI Chatbot Solutions', action: flowAI },
+      { label: '⚙️ Business Automation',  action: flowAutomation },
+      { label: '📧 Business Email Setup', action: flowEmail },
+      { label: '🎨 Branding & Marketing', action: flowBranding },
+      { label: '← Back',                  action: flowWelcome },
+    ]);
+  }
+
+  async function flowWebsite() {
+    await showTyping(800);
+    await addMsg('🌐 <strong>Custom Website Development</strong><br/><br/>We build high-performance websites from scratch — no templates, ever. Every site is mobile-first, blazing fast, and engineered to convert visitors into customers.<br/><br/>Typical turnaround: <strong>2–4 weeks.</strong>', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  async function flowAI() {
+    await showTyping(800);
+    await addMsg('🤖 <strong>AI Chatbot Solutions</strong><br/><br/>We deploy intelligent chatbots trained on your business — handling leads, FAQs, bookings, and customer support <strong>24/7, automatically.</strong><br/><br/>Your best team member never takes a day off.', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  async function flowAutomation() {
+    await showTyping(800);
+    await addMsg('⚙️ <strong>Business Automation Systems</strong><br/><br/>We eliminate repetitive workflows by building smart automation pipelines that connect your tools and run without intervention.<br/><br/>Clients save an average of <strong>10+ hours per week</strong> after automation.', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  async function flowEmail() {
+    await showTyping(700);
+    await addMsg('📧 <strong>Professional Business Email</strong><br/><br/>We set up branded email infrastructure (e.g. you@yourbusiness.com) with enterprise-grade security, deliverability, and full team management.<br/><br/>Usually completed in <strong>2–3 business days.</strong>', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  async function flowBranding() {
+    await showTyping(800);
+    await addMsg('🎨 <strong>Digital Branding & Marketing Assets</strong><br/><br/>Logos, visual systems, pitch decks, social media assets, and full brand guidelines — crafted to communicate authority and trust at first glance.', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',         action: flowLeadStart },
+      { label: '📞 Book a Call',         action: flowBookCall },
+      { label: '← Other Services',      action: flowServices },
+      { label: '🏠 Main Menu',           action: flowWelcome },
+    ]);
+  }
+
+  /* ─ FAQ ─ */
+  async function flowFAQ() {
+    state.step = 'faq';
+    await showTyping(600);
+    await addMsg('Here are the most common questions. Pick one:', 'bot');
+    setQR([
+      { label: '⏱ How long do projects take?', action: faqTimeline },
+      { label: '💰 How does pricing work?',     action: faqPricing },
+      { label: '🌍 Do you work globally?',       action: faqGlobal },
+      { label: '🔧 What tech do you use?',       action: faqTech },
+      { label: '🤝 What happens after launch?',  action: faqSupport },
+      { label: '← Back',                         action: flowWelcome },
+    ]);
+  }
+
+  async function faqTimeline() {
+    await showTyping(700);
+    await addMsg('⏱ <strong>Project Timelines</strong><br/><br/>• Websites: <strong>2–4 weeks</strong><br/>• AI Chatbots: <strong>1–3 weeks</strong><br/>• Automation: <strong>1–2 weeks</strong><br/>• Email Setup: <strong>2–3 days</strong><br/>• Branding: <strong>2–3 weeks</strong><br/><br/>We provide a confirmed timeline before work begins.', 'bot');
+    setQR([
+      { label: '📞 Book a Call',   action: flowBookCall },
+      { label: '← More FAQs',     action: flowFAQ },
+      { label: '🏠 Main Menu',     action: flowWelcome },
+    ]);
+  }
+
+  async function faqPricing() {
+    await showTyping(700);
+    await addMsg('💰 <strong>How Pricing Works</strong><br/><br/>Every project is scoped and priced individually — we don\'t believe in one-size-fits-all packages.<br/><br/>We use a <strong>split-payment model</strong>: a deposit to begin, balance on delivery. A detailed proposal is always provided before any commitment.', 'bot');
+    setQR([
+      { label: '✉ Get a Free Quote', action: flowLeadStart },
+      { label: '← More FAQs',        action: flowFAQ },
+      { label: '🏠 Main Menu',        action: flowWelcome },
+    ]);
+  }
+
+  async function faqGlobal() {
+    await showTyping(600);
+    await addMsg('🌍 <strong>Yes — we work globally.</strong><br/><br/>GeoBrif Digital is fully remote and works with clients across multiple countries and time zones. Our entire workflow runs seamlessly online — no location barriers.', 'bot');
+    setQR([
+      { label: '📞 Book a Call',   action: flowBookCall },
+      { label: '← More FAQs',     action: flowFAQ },
+      { label: '🏠 Main Menu',     action: flowWelcome },
+    ]);
+  }
+
+  async function faqTech() {
+    await showTyping(700);
+    await addMsg('🔧 <strong>Technology We Use</strong><br/><br/>We select the best stack for each project — HTML/CSS/JS, React, Next.js, WordPress, Webflow, Make, Zapier, n8n, and more.<br/><br/>We never impose a stack — we recommend what\'s right for <em>you</em>.', 'bot');
+    setQR([
+      { label: '📞 Book a Call',   action: flowBookCall },
+      { label: '← More FAQs',     action: flowFAQ },
+      { label: '🏠 Main Menu',     action: flowWelcome },
+    ]);
+  }
+
+  async function faqSupport() {
+    await showTyping(700);
+    await addMsg('🤝 <strong>Post-Launch Support</strong><br/><br/>All projects include a post-launch support window. We also offer ongoing monthly retainer arrangements for maintenance, updates, and continued growth.<br/><br/>We don\'t disappear after delivery.', 'bot');
+    setQR([
+      { label: '✉ Get a Quote',   action: flowLeadStart },
+      { label: '← More FAQs',     action: flowFAQ },
+      { label: '🏠 Main Menu',     action: flowWelcome },
+    ]);
+  }
+
+  /* ─ BOOK CALL ─ */
+  async function flowBookCall() {
+    state.step = 'book';
+    await showTyping(700);
+    await addMsg('📞 <strong>Book a Discovery Call</strong><br/><br/>We\'d love to connect. Our discovery calls are focused 30-minute conversations — no sales pitch, just a straight conversation about your goals.', 'bot');
+    await showTyping(500);
+    await addMsg('You can reach us directly to schedule:<br/><br/>📧 <strong>info@geobrif.com</strong><br/>📱 <strong>+94 74 153 4557</strong><br/>💬 WhatsApp the same number<br/><br/>Or leave your details and we\'ll reach out to you 👇', 'bot');
+    setQR([
+      { label: '✉ Leave my details', action: flowLeadStart },
+      { label: '🏠 Main Menu',        action: flowWelcome },
+    ]);
+  }
+
+  /* ─ LEAD CAPTURE ─ */
+  async function flowLeadStart() {
+    state.step = 'lead';
+    clearQR();
+    await showTyping(600);
+    await addMsg('Great! Let\'s get some details so we can put together a tailored proposal for you. 📋', 'bot');
+    await showTyping(500);
+    await addMsg('First — what\'s your <strong>full name</strong>?', 'bot');
+    state.awaitingInput = 'name';
+    input.placeholder = 'Your full name…';
+    input.focus();
+  }
+
+  async function flowLeadEmail() {
+    await showTyping(500);
+    await addMsg(`Nice to meet you, <strong>${state.lead.name}</strong>! 👋<br/><br/>What\'s the best <strong>email address</strong> to reach you?`, 'bot');
+    state.awaitingInput = 'email';
+    input.placeholder = 'your@email.com';
+  }
+
+  async function flowLeadService() {
+    state.awaitingInput = null;
+    await showTyping(500);
+    await addMsg('Almost done! Which <strong>service</strong> are you most interested in?', 'bot');
+    setQR([
+      { label: '🌐 Website Development', action: () => finishLead('Website Development') },
+      { label: '🤖 AI Chatbot',           action: () => finishLead('AI Chatbot Solutions') },
+      { label: '⚙️ Automation',           action: () => finishLead('Business Automation') },
+      { label: '📧 Business Email',        action: () => finishLead('Business Email Setup') },
+      { label: '🎨 Branding',              action: () => finishLead('Branding & Marketing') },
+      { label: '📦 Multiple / Full Package', action: () => finishLead('Multiple Services') },
+    ]);
+  }
+
+  async function finishLead(service) {
+    state.lead.service = service;
+    clearQR();
+    await showTyping(900);
+    await addMsg(`✅ <strong>All received!</strong><br/><br/>Here\'s what we\'ve captured:<br/>👤 <strong>${state.lead.name}</strong><br/>📧 <strong>${state.lead.email}</strong><br/>🎯 <strong>${state.lead.service}</strong><br/><br/>Our team will be in touch within <strong>24 hours</strong> with a tailored proposal. We\'re looking forward to working with you! 🚀`, 'bot');
+    await showTyping(600);
+    await addMsg('In the meantime, feel free to explore our <a href="services.html" style="color:#c9a84c">Services</a> or learn <a href="about.html" style="color:#c9a84c">About Us</a>.', 'bot');
+    state.step = 'done';
+    state.awaitingInput = null;
+    input.placeholder = 'Type a message…';
+    setQR([
+      { label: '🏠 Main Menu', action: flowWelcome },
+    ]);
+  }
+
+  /* ── INPUT HANDLING ── */
+  function handleUserInput() {
+    const val = input.value.trim();
+    if (!val) return;
+    addMsg(val, 'user');
+    input.value = '';
+
+    if (state.awaitingInput === 'name') {
+      state.lead.name = val;
+      flowLeadEmail();
+    } else if (state.awaitingInput === 'email') {
+      // Basic email check
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        showTyping(400).then(() => {
+          addMsg('Hmm, that doesn\'t look like a valid email. Could you double-check it? 🙏', 'bot');
+        });
+        return;
+      }
+      state.lead.email = val;
+      flowLeadService();
+    } else {
+      // Free-text fallback
+      const lower = val.toLowerCase();
+      if (lower.includes('service') || lower.includes('what do you') || lower.includes('offer')) {
+        showTyping(600).then(() => flowServices());
+      } else if (lower.includes('price') || lower.includes('cost') || lower.includes('how much')) {
+        showTyping(600).then(() => faqPricing());
+      } else if (lower.includes('call') || lower.includes('book') || lower.includes('schedule')) {
+        showTyping(600).then(() => flowBookCall());
+      } else if (lower.includes('website') || lower.includes('web')) {
+        showTyping(600).then(() => flowWebsite());
+      } else if (lower.includes('chatbot') || lower.includes('ai') || lower.includes('bot')) {
+        showTyping(600).then(() => flowAI());
+      } else if (lower.includes('automat')) {
+        showTyping(600).then(() => flowAutomation());
+      } else if (lower.includes('email')) {
+        showTyping(600).then(() => flowEmail());
+      } else if (lower.includes('brand') || lower.includes('logo') || lower.includes('design')) {
+        showTyping(600).then(() => flowBranding());
+      } else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
+        showTyping(500).then(() => addMsg('Hello! 👋 How can I help you today?', 'bot')).then(() => {
+          setQR([
+            { label: '💼 Services',         action: flowServices },
+            { label: '❓ FAQs',             action: flowFAQ },
+            { label: '📞 Book a Call',       action: flowBookCall },
+            { label: '✉ Get a Quote',        action: flowLeadStart },
+          ]);
+        });
+      } else {
+        showTyping(700).then(() => {
+          addMsg('I\'m not sure I caught that — but I\'m happy to help! Here\'s what I can do:', 'bot');
+          setQR([
+            { label: '💼 Our Services',       action: flowServices },
+            { label: '❓ Common Questions',   action: flowFAQ },
+            { label: '📞 Book a Call',         action: flowBookCall },
+            { label: '✉ Get a Quote',          action: flowLeadStart },
+          ]);
+        });
+      }
+    }
+  }
+
+  /* ── OPEN / CLOSE ── */
+  function openChat() {
+    state.open = true;
+    win.classList.add('open');
+    toggle.classList.add('open');
+    badge.style.display = 'none';
+    if (msgs.children.length === 0) flowWelcome();
+    setTimeout(() => input.focus(), 300);
+  }
+
+  function closeChat() {
+    state.open = false;
+    win.classList.remove('open');
+    toggle.classList.remove('open');
+  }
+
+  toggle.addEventListener('click', () => state.open ? closeChat() : openChat());
+  closeBtn.addEventListener('click', closeChat);
+  sendBtn.addEventListener('click', handleUserInput);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserInput(); });
+
+  /* Auto-open after 4 seconds on first load */
+  setTimeout(() => {
+    if (!state.open) openChat();
+  }, 4000);
+
+})();
+</script>
+<!-- ============================================================
+     END GEOBRIF CHATBOT WIDGET
+============================================================ -->
+
+</body>
+</html>
